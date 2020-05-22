@@ -8,6 +8,7 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    String _value = "Spieler hinzufügen";
       return Scaffold(
           appBar: AppBar(
             actions: <Widget>[
@@ -36,15 +37,12 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: <Widget>[
                     SpielerDatenAnzeigen(),
-                    LetztesSpiel(),
+
                   ],
                 )
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () { Navigator.pushNamed(context, '/AddingMenu'); },
-            child: Text("+"),
-          ),
+
 
       );
   }

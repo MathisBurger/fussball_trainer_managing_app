@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fussball_trainer_managing_app/letztes_spiel_container_rows.dart';
 // ignore: non_constant_identifier_names
 Container SpielerDatenAnzeigen(){
   return Container(
@@ -47,7 +46,7 @@ Container SpielerDatenAnzeigen(){
     ),
   );
 }
-Container LetztesSpiel(){
+Container NeuHinzufuegen(){
   return Container(
     decoration: BoxDecoration(
       border: Border.all(
@@ -57,6 +56,7 @@ Container LetztesSpiel(){
       borderRadius: BorderRadius.all(Radius.circular(16)),
       color: Colors.redAccent,
     ),
+
     height: 200,
     width: 350,
     margin: EdgeInsets.only(top: 20),
@@ -69,28 +69,24 @@ Container LetztesSpiel(){
             borderRadius: BorderRadius.all(Radius.circular(8)),
             color: Colors.white,
           ),
-          child: Text("Letztes Spiel",
+          child: Text("Hinzufügen",
             style: TextStyle(
               fontSize: 25,
+
             ),
             textAlign: TextAlign.center,
           ),
         ),
         Container(
-            margin: EdgeInsets.only(top: 10),
-            width: 300,
-            height: 140,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            ),
-          child: Column(
-            children: <Widget>[
-              begegnung(),
-              Ergebnis(),
-              InternerSpielberrrichtAnsehen(),
-            ],
-          ),
+            margin: EdgeInsets.only(top: 17),
+            child: SizedBox(
+                width: 300,
+                height: 125,
+                child: RaisedButton(
+                  onPressed: () { print("Moin"); },
+                  child: Text("Daten ansehen"),
+                )
+            )
         ),
       ],
     ),

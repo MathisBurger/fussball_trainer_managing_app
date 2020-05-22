@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fussball_trainer_managing_app/AddingMenuBody.dart';
 
 class AddingMenu extends StatefulWidget{
   @override
@@ -23,6 +24,7 @@ class _AddingMenu extends State<AddingMenu>{
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
+      body: getBody(),
     );
   }
 

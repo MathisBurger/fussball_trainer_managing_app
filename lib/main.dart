@@ -8,7 +8,7 @@ void main() => runApp(MaterialApp(
   home: Home(),
   routes: {
     '/home': (context) => Home(),
-    '/AddingMenu': (context) => AddingMenu(),
+    '/AddPlayer': (context) => AddingMenu(),
   },
 ));
 
