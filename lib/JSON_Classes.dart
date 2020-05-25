@@ -1,14 +1,9 @@
 import 'dart:convert';
-
+import 'AddingViaActionButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
-  CreatePlayer(String vorname, String nachname,){
-    String textname = vorname + "!" + nachname + "!" + 0.toString();
-    new File("spieler/playerlist.txt").create(recursive: true).then((File file) => {
-      file.writeAsStringSync(textname + "\n")
-    });
-  }
+
 
   List<String> GetPlayerInfo(String filename){
     String path = "spieler/datasheets/" + filename + ".txt";
