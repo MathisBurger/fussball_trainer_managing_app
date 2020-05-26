@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:fussball_trainer_managing_app/Var.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 
@@ -86,12 +88,16 @@ class _AddingMenu extends State<AddingMenu>{
                   child: RaisedButton(
                     color: Colors.lightBlue,
                     child: Text("Registrieren"),
-                    onPressed: () {
+                    onPressed: () async {
                       vorname = vornamecontroller.text;
                       nachname = nachnamecontroller.text;
-                      String textname = vorname + "!" + nachname + "!0";
-                      String Data = textname + "!" + _image.path + "\n";
-                      WriteData(Data);
+                      vornamecontroller.clear();
+                      nachnamecontroller.clear();
+                      final directory = await _localPath;
+                      final String path = directory + vorname + "!" + nachname + ".txt";
+                      _image.rename(path);
+                      String textname = vorname + "!" + nachname + "!0\n";
+                      WriteData(textname);
                     },)
               ),
             ),
@@ -108,7 +114,7 @@ class _AddingMenu extends State<AddingMenu>{
     });
   }
   Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
+      final directory = await getApplicationDocumentsDirectory();
 
     return directory.path;
   }
@@ -118,7 +124,10 @@ class _AddingMenu extends State<AddingMenu>{
   }
   Future<File> WriteData(String Data) async {
     final file = await _localFile;
+    final String up = await file.readAsString(encoding: utf8);
     print("Datei erfolgreich geschrieben");
-    return file.writeAsString('$Data');
+    String data = up + Data;
+    return file.writeAsString('$data');
   }
+
 }

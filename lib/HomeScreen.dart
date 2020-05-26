@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fussball_trainer_managing_app/ReturnListOfChildren.dart';
+import 'package:fussball_trainer_managing_app/Var.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 class Home extends StatefulWidget{
   @override
@@ -8,7 +12,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     String _value = "Spieler hinzufügen";
-      return Scaffold(
+    PlayerList();
+    _localPath;
+    return Scaffold(
           appBar: AppBar(
             actions: <Widget>[
               IconButton(
@@ -71,7 +77,10 @@ class _HomeState extends State<Home> {
                                   width: 300,
                                   height: 125,
                                   child: RaisedButton(
-                                    onPressed: () { print("Moin"); },
+                                    onPressed: () {
+                                      PlayerList();
+                                      Navigator.pushNamed(context, '/GetPlayerList');
+                                      },
                                     child: Text("Daten ansehen"),
                                   )
                               )
@@ -146,4 +155,31 @@ class _HomeState extends State<Home> {
 
       );
   }
+  Future<String> get _localPath async {
+    var directory = await getApplicationDocumentsDirectory();
+    Variablen.DocumentRoot = directory.path;
+    return directory.path;
+  }
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/playerlist.txt');
+  }
+  Future PlayerList() async {
+    String data = await readPlayerList();
+    var arr = data.split("\n");
+    Variablen.litems = arr;
+  }
+  Future<String> readPlayerList() async {
+    try {
+      final file = await _localFile;
+
+      // Read the file.
+      String contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return null;
+    }
+}
 }
