@@ -27,7 +27,7 @@ class _Settings extends State<Settings> {
         backgroundColor: Colors.green,
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 15),
@@ -46,6 +46,7 @@ class _Settings extends State<Settings> {
                       onChanged: (bool value) {
                           this.setState(() {
                             Variablen.AutoBackup = !Variablen.AutoBackup;
+                            ChangeBackupState();
                           });
                       },
                       value: Variablen.AutoBackup,
@@ -134,6 +135,25 @@ class _Settings extends State<Settings> {
       File('$path/playerlist.txt').create(recursive: true);
     }
     return File('$path/playerlist.txt');
+  }
+  Future ChangeBackupState() async {
+    try{
+    File file = await _localFile4;
+      String data = await file.readAsString(encoding: utf8);
+      if(data == "true"){
+        file.writeAsString("false");
+      }else {
+        file.writeAsString("true");
+      }
+    }catch (e){}
+  }
+  Future get _localFile4 async {
+    final path = await _localPath;
+    if(!File('$path/backups.txt').existsSync()){
+      File('$path/backups.txt').create(recursive: true);
+      File('$path/backups.txt').writeAsString("null");
+    }
+    return File('$path/backups.txt');
   }
 
 }

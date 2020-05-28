@@ -17,6 +17,9 @@ class _HomeState extends State<Home> {
     _localPath;
     _localFile;
     _localFile2;
+    _localFile3;
+    _localFile4;
+    LoadBackupState();
     if(Variablen.AutoBackup){
       Backup();
     }
@@ -200,9 +203,9 @@ class _HomeState extends State<Home> {
     }
 }
   Future GetNameOfPlayers() async {
-    File players = await _localFile;
-    String data = await players.readAsString();
-      try{
+    try{
+      File players = await _localFile;
+      String data = await players.readAsString();
       var raw = data.split("\n");
       print(raw.length);
       print(raw.toString());
@@ -265,6 +268,27 @@ class _HomeState extends State<Home> {
       File('$path/userdata.txt').writeAsString("null");
     }
     return File('$path/userdata.txt');
+  }
+  Future get _localFile4 async {
+    final path = await _localPath;
+    if(!File('$path/backups.txt').existsSync()){
+      File('$path/backups.txt').create(recursive: true);
+      File('$path/backups.txt').writeAsString("null");
+    }
+    return File('$path/backups.txt');
+  }
+  Future LoadBackupState() async {
+    try{
+      File file = await _localFile4;
+      String data = await file.readAsString(encoding: utf8);
+      if(data == "true"){
+        Variablen.AutoBackup = true;
+      } else {
+        Variablen.AutoBackup = false;
+      }
+    } catch (e){
+      print(e.toString());
+    }
   }
 
 }
