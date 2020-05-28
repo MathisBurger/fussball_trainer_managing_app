@@ -54,6 +54,7 @@ class _AddTraining extends State<AddTraining> {
                   ),
                   Container(
                     child: RaisedButton(
+                      color: Colors.blue,
                       onPressed: () {
                         AddEinheit();
                       },

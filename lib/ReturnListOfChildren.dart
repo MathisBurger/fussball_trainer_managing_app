@@ -44,7 +44,7 @@ class _PlayerList extends State<PlayerList> {
                         String Vorname = PlayerData[0];
                         String Nachname = PlayerData[1];
                         String Trainings = PlayerData[2];
-                        double anteil = int.parse(Trainings) / Variablen.TrainingsGesamt;
+                        double anteil = int.parse(Trainings) / Variablen.TrainingsGesamt * 100;
                         String Fullname = Vorname + " " + Nachname;
                         String Path = Variablen.DocumentRoot + Vorname + "!" + Nachname + ".txt";
                         File file = new File(Path);
