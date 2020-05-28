@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fussball_trainer_managing_app/ReturnListOfChildren.dart';
 import 'package:fussball_trainer_managing_app/Var.dart';
+import 'package:fussball_trainer_managing_app/AddTraining.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
-
 class Home extends StatefulWidget{
   @override
   _HomeState createState() => _HomeState();
@@ -11,15 +13,15 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    String _value = "Spieler hinzufügen";
-    PlayerList();
     _localPath;
+    _localFile;
+    _localFile2;
     return Scaffold(
           appBar: AppBar(
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.settings),
-                onPressed: () { print("Settings Icon"); },
+                onPressed: () { Navigator.pushNamed(context, '/settings'); },
               )
             ],
             title: Text("Trainer Manager",
@@ -79,7 +81,6 @@ class _HomeState extends State<Home> {
                                   child: RaisedButton(
                                     onPressed: () {
                                       PlayerList();
-                                      Navigator.pushNamed(context, '/GetPlayerList');
                                       },
                                     child: Text("Daten ansehen"),
                                   )
@@ -128,7 +129,9 @@ class _HomeState extends State<Home> {
                                     width: 300,
                                     height: 25,
                                     child: RaisedButton(
-                                      onPressed: () { print("Moin"); },
+                                      onPressed: () {
+                                        GetNameOfPlayers();
+                                        },
                                       child: Text("Training Hinzufügen"),),),
                                 ),
                                 Container(
@@ -162,12 +165,22 @@ class _HomeState extends State<Home> {
   }
   Future<File> get _localFile async {
     final path = await _localPath;
+    if(!File('$path/playerlist.txt').existsSync()){
+      File('$path/playerlist.txt').create(recursive: true);
+    }
     return File('$path/playerlist.txt');
   }
   Future PlayerList() async {
-    String data = await readPlayerList();
-    var arr = data.split("\n");
-    Variablen.litems = arr;
+    try {
+      await GetGesamtTrainings();
+      String data = await readPlayerList();
+      var arr = data.split("\n");
+      Variablen.litems = arr;
+      print(arr.toString());
+      Navigator.pushNamed(context, '/GetPlayerList');
+    } catch (e){
+      print(e.toString());
+    }
   }
   Future<String> readPlayerList() async {
     try {
@@ -182,4 +195,47 @@ class _HomeState extends State<Home> {
       return null;
     }
 }
+  Future GetNameOfPlayers() async {
+    File players = await _localFile;
+    String data = await players.readAsString();
+      try{
+      var raw = data.split("\n");
+      print(raw.length);
+      print(raw.toString());
+      int y  = raw.length - 1;
+      List<String> Names = [];
+      List<bool> States = [];
+      for (int i = 0; i < y; i++) {
+        if(raw[i] != "") {
+          var x = raw[i].split("!");
+          String name = x[0] + " " + x[1];
+          Names.add(name);
+          States.add(false);
+        }
+      }
+      if(Variablen.Player_Names.length != Names.length){
+        Variablen.Player_Names.clear();
+        Variablen.Player_Names.addAll(Names);
+        Variablen.Player_States.clear();
+        Variablen.Player_States.addAll(States);
+      }
+      Navigator.pushNamed(context, '/AddTraining');
+      } catch (e){
+        print(e.toString());
+      }
+  }
+  Future<File> get _localFile2 async {
+    final path = await _localPath;
+    if(!File('$path/trainings.txt').existsSync()){
+      File('$path/trainings.txt').create(recursive: true);
+      File('$path/trainings.txt').writeAsString("0");
+    }
+    return File('$path/trainings.txt');
+  }
+  Future GetGesamtTrainings() async {
+    File file = await _localFile2;
+    Variablen.TrainingsGesamt = double.parse(await file.readAsString(encoding: utf8));
+    print(double.parse(await file.readAsString(encoding: utf8)));
+  }
+
 }

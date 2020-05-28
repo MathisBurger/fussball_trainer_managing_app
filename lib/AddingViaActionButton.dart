@@ -23,10 +23,10 @@ class _AddingMenu extends State<AddingMenu>{
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.settings),
-            onPressed: () { print("Settings Icon"); },
+            onPressed: () { Navigator.pushNamed(context, '/settings'); },
           )
         ],
-        title: Text("Trainer Manager",
+        title: Text("Spieler Hinzufügen",
           style: TextStyle(
             fontSize: 25.0,
             fontWeight: FontWeight.bold,
@@ -37,14 +37,6 @@ class _AddingMenu extends State<AddingMenu>{
       body: Container(
         child: Column(
           children: <Widget>[
-            Container(
-              child: Text("Spieler hinzufügen",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
             Container(
               margin: EdgeInsets.symmetric(
                 horizontal: 50,
@@ -91,8 +83,6 @@ class _AddingMenu extends State<AddingMenu>{
                     onPressed: () async {
                       vorname = vornamecontroller.text;
                       nachname = nachnamecontroller.text;
-                      vornamecontroller.clear();
-                      nachnamecontroller.clear();
                       final directory = await _localPath;
                       final String path = directory + vorname + "!" + nachname + ".txt";
                       _image.rename(path);
@@ -107,11 +97,15 @@ class _AddingMenu extends State<AddingMenu>{
     );
   }
   Future _getImage() async{
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    try {
+      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-    setState(() {
-      _image = image;
-    });
+      setState(() {
+        _image = image;
+      });
+    } catch (e){
+      print(e.toString());
+    }
   }
   Future<String> get _localPath async {
       final directory = await getApplicationDocumentsDirectory();
@@ -120,14 +114,20 @@ class _AddingMenu extends State<AddingMenu>{
   }
   Future<File> get _localFile async {
     final path = await _localPath;
+    if(!File('$path/playerlist.txt').existsSync()){
+      File('$path/playerlist.txt').create(recursive: true);
+    }
     return File('$path/playerlist.txt');
   }
-  Future<File> WriteData(String Data) async {
+  Future WriteData(String Data) async {
     final file = await _localFile;
     final String up = await file.readAsString(encoding: utf8);
+    String moin = up + Data;
+    print(moin);
+    file.writeAsString('$moin');
     print("Datei erfolgreich geschrieben");
-    String data = up + Data;
-    return file.writeAsString('$data');
+    vornamecontroller.clear();
+    nachnamecontroller.clear();
   }
 
 }

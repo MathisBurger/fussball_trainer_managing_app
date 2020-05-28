@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'Var.dart';
 class PlayerList extends StatefulWidget{
@@ -16,10 +17,10 @@ class _PlayerList extends State<PlayerList> {
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.settings),
-                onPressed: () { print("Settings Icon"); },
+                onPressed: () { Navigator.pushNamed(context, '/settings'); },
               )
             ],
-            title: Text("Trainer Manager",
+            title: Text("Spieler Daten",
               style: TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
@@ -34,16 +35,16 @@ class _PlayerList extends State<PlayerList> {
                     (
                       itemCount: Variablen.litems.length,
                       itemBuilder: (BuildContext ctxt, int Index) {
-                        print("litems: " + Variablen.litems.toString());
                         var Data = Variablen.litems[Index];
                         if(Data == ""){
-                          return null;
+                          return Container();
                         }
                         var PlayerData = Data.split("!");
                         print("PlayerData: " + PlayerData.toString());
                         String Vorname = PlayerData[0];
                         String Nachname = PlayerData[1];
                         String Trainings = PlayerData[2];
+                        double anteil = int.parse(Trainings) / Variablen.TrainingsGesamt;
                         String Fullname = Vorname + " " + Nachname;
                         String Path = Variablen.DocumentRoot + Vorname + "!" + Nachname + ".txt";
                         File file = new File(Path);
@@ -86,6 +87,33 @@ class _PlayerList extends State<PlayerList> {
                                           color: Colors.white,
                                           borderRadius: BorderRadius.all(Radius.circular(8)),
                                         ),
+                                        child: Column(
+                                          children: <Widget>[
+                                            Container(
+                                              child: Text("Trainingsbeteiligung",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                              ),
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(top: 5, left: 5),
+                                              child: Text("Gesamt: " + Trainings,
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                              ),
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(top: 5, left: 5),
+                                              child: Text("Anteil: " + anteil.toString() + "%",
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       )
                                   ],
                                 ),
@@ -99,6 +127,8 @@ class _PlayerList extends State<PlayerList> {
           )
       );
   }
+
+
 
 
 }
