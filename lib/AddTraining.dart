@@ -88,35 +88,35 @@ class _AddTraining extends State<AddTraining> {
   Future AddEinheit() async {
     File file;
     String end = "";
-    for(int i=0; i<Variablen.Player_Names.length; i++){
+    try {
+      print("try");
       file = await _localFile;
       String data = await file.readAsString(encoding: utf8);
-      var raw = data.split("\n");
-      var name_salt = Variablen.Player_Names[i].split(" ");
-      String name = name_salt[0] + "!" + name_salt[1];
-      for(int x=0; x<raw.length; x++){
-        if(raw[x].contains(name)){
-          var arr = raw[x].split("!");
-          arr[2] = (int.parse(arr[2]) + 1).toString();
-          raw[x] = arr[0] + "!" + arr[1] + "!" + arr[2];
-          for(int y=0; y<raw.length; y++){
-            if(raw[y] != "") {
-              end += raw[y] + "\n";
-            }
-          }
+      var data_arr = data.split("\n");
+      for (int i = 0; i < data_arr.length; i++) {
+        if (data_arr[i] != "" && Variablen.Player_States[i] == true) {
+          var raw_arr = data_arr[i].split("!");
+          raw_arr[2] = (int.parse(raw_arr[2]) + 1).toString();
+          end = end + raw_arr[0] + "!" + raw_arr[1] + "!" + raw_arr[2] + "\n";
+        } else if (data_arr[i] == ""){}
+        else {
+          end = end + data_arr[i] + "\n";
         }
       }
+      print("end: " + end);
+      file.writeAsString(end);
+      File file2 = await _localFile2;
+      print("first");
+      String data1 = await file2.readAsString(encoding: utf8);
+      print("secound");
+      print("Data" + data1);
+      int val = int.parse(data1) + 1;
+      print(val);
+      print(val.toString());
+      file2.writeAsString(val.toString());
+    } catch(e) {
+      print(e.toString());
     }
-    file.writeAsString(end);
-    File file2 = await _localFile2;
-    print("first");
-    String data = await file2.readAsString(encoding: utf8);
-    print("secound");
-    print("Data" + data);
-    int val = int.parse(data) + 1;
-    print(val);
-    print(val.toString());
-    file2.writeAsString(val.toString());
   }
 
 }

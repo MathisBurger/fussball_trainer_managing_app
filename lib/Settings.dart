@@ -74,9 +74,35 @@ class _Settings extends State<Settings> {
                 width: 300,
                 height: 50,
                 child: RaisedButton(
+                  child: Text("Letzes Backup laden"),
+                  onPressed: () {
+                    LoadLastBackup();
+                  },
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              child: SizedBox(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
                   child: Text("Registrieren"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/register');
+                  },
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              child: SizedBox(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  child: Text("Login"),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Login');
                   },
                 ),
               ),
@@ -125,9 +151,11 @@ class _Settings extends State<Settings> {
     return File('$path/trainings.txt');
   }
   Future<String> get _localPath async {
-    var directory = await getApplicationDocumentsDirectory();
-    Variablen.DocumentRoot = directory.path;
-    return directory.path;
+    try {
+      var directory = await getApplicationDocumentsDirectory();
+      Variablen.DocumentRoot = directory.path;
+      return directory.path;
+    } catch (e) {}
   }
   Future<File> get _localFile async {
     final path = await _localPath;
@@ -154,6 +182,23 @@ class _Settings extends State<Settings> {
       File('$path/backups.txt').writeAsString("null");
     }
     return File('$path/backups.txt');
+  }
+  Future LoadLastBackup() async {
+    File file1 = await _localFile3;
+    String data1 = await file1.readAsString(encoding: utf8);
+    if(data1 != "null"){
+      var user_arr = data1.split("!");
+      String request = "/LoadBackupFussballManagerApp?username=" + user_arr[0] + "&password=" + user_arr[1] + "&ID=" + user_arr[2];
+      String response = await CallAPI(request);
+      var response_arr = response.split("()");
+      response_arr[0] = response_arr[0].replaceAll("§", "\n");
+      File file2 = await _localFile;
+      await file2.writeAsString(response_arr[0]);
+      File file3 = await _localFile2;
+      await file3.writeAsString(response_arr[1]);
+
+    }
+
   }
 
 }

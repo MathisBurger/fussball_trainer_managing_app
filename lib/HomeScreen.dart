@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:fussball_trainer_managing_app/ReturnListOfChildren.dart';
 import 'package:fussball_trainer_managing_app/Var.dart';
-import 'package:fussball_trainer_managing_app/AddTraining.dart';
 import 'package:fussball_trainer_managing_app/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -166,16 +164,22 @@ class _HomeState extends State<Home> {
       );
   }
   Future<String> get _localPath async {
-    var directory = await getApplicationDocumentsDirectory();
-    Variablen.DocumentRoot = directory.path;
-    return directory.path;
+    try {
+      var directory = await getApplicationDocumentsDirectory();
+      Variablen.DocumentRoot = directory.path;
+      return directory.path;
+    } catch (e){
+
+    }
   }
   Future<File> get _localFile async {
-    final path = await _localPath;
-    if(!File('$path/playerlist.txt').existsSync()){
-      File('$path/playerlist.txt').create(recursive: true);
-    }
-    return File('$path/playerlist.txt');
+    try {
+      final path = await _localPath;
+      if (!File('$path/playerlist.txt').existsSync()) {
+        File('$path/playerlist.txt').create(recursive: true);
+      }
+      return File('$path/playerlist.txt');
+    } catch (e){}
   }
   Future PlayerList() async {
     try {
@@ -183,11 +187,8 @@ class _HomeState extends State<Home> {
       String data = await readPlayerList();
       var arr = data.split("\n");
       Variablen.litems = arr;
-      print(arr.toString());
       Navigator.pushNamed(context, '/GetPlayerList');
-    } catch (e){
-      print(e.toString());
-    }
+    } catch (e){}
   }
   Future<String> readPlayerList() async {
     try {
@@ -207,12 +208,9 @@ class _HomeState extends State<Home> {
       File players = await _localFile;
       String data = await players.readAsString();
       var raw = data.split("\n");
-      print(raw.length);
-      print(raw.toString());
-      int y  = raw.length - 1;
       List<String> Names = [];
       List<bool> States = [];
-      for (int i = 0; i < y; i++) {
+      for (int i = 0; i < raw.length; i++) {
         if(raw[i] != "") {
           var x = raw[i].split("!");
           String name = x[0] + " " + x[1];
@@ -227,22 +225,23 @@ class _HomeState extends State<Home> {
         Variablen.Player_States.addAll(States);
       }
       Navigator.pushNamed(context, '/AddTraining');
-      } catch (e){
-        print(e.toString());
-      }
+      } catch (e){}
   }
   Future<File> get _localFile2 async {
-    final path = await _localPath;
-    if(!File('$path/trainings.txt').existsSync()){
-      File('$path/trainings.txt').create(recursive: true);
-      File('$path/trainings.txt').writeAsString("0");
-    }
-    return File('$path/trainings.txt');
+    try {
+      final path = await _localPath;
+      if (!File('$path/trainings.txt').existsSync()) {
+        File('$path/trainings.txt').create(recursive: true);
+        File('$path/trainings.txt').writeAsString("0");
+      }
+      return File('$path/trainings.txt');
+    }catch(e){}
   }
   Future GetGesamtTrainings() async {
-    File file = await _localFile2;
-    Variablen.TrainingsGesamt = double.parse(await file.readAsString(encoding: utf8));
-    print(double.parse(await file.readAsString(encoding: utf8)));
+    try {
+      File file = await _localFile2;
+      Variablen.TrainingsGesamt = double.parse(await file.readAsString(encoding: utf8));
+    } catch(e){}
   }
   Future Backup() async {
     if(Variablen.BackupOnLoad) {
@@ -262,20 +261,24 @@ class _HomeState extends State<Home> {
     }
   }
   Future get _localFile3 async {
-    final path = await _localPath;
-    if(!File('$path/userdata.txt').existsSync()){
-      File('$path/userdata.txt').create(recursive: true);
-      File('$path/userdata.txt').writeAsString("null");
-    }
-    return File('$path/userdata.txt');
+    try {
+      final path = await _localPath;
+      if (!File('$path/userdata.txt').existsSync()) {
+        File('$path/userdata.txt').create(recursive: true);
+        File('$path/userdata.txt').writeAsString("null");
+      }
+      return File('$path/userdata.txt');
+    }catch(e){}
   }
   Future get _localFile4 async {
-    final path = await _localPath;
-    if(!File('$path/backups.txt').existsSync()){
-      File('$path/backups.txt').create(recursive: true);
-      File('$path/backups.txt').writeAsString("null");
-    }
-    return File('$path/backups.txt');
+    try {
+      final path = await _localPath;
+      if (!File('$path/backups.txt').existsSync()) {
+        File('$path/backups.txt').create(recursive: true);
+        File('$path/backups.txt').writeAsString("null");
+      }
+      return File('$path/backups.txt');
+    }catch(e){}
   }
   Future LoadBackupState() async {
     try{
@@ -286,9 +289,7 @@ class _HomeState extends State<Home> {
       } else {
         Variablen.AutoBackup = false;
       }
-    } catch (e){
-      print(e.toString());
-    }
+    } catch (e){}
   }
 
 }

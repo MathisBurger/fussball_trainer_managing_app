@@ -36,7 +36,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Sie lassen mit der Bestätigung der AGBs zu, dass Webservice Rathje ihre"
                   " Nutzerdaten speichert. Diese Daten dürfen jedoch nicht weiterverkauft oder veröffentlicht werden. "
                   "Die Sammlung dient ausschließlich der Nutzung einer Backup-Funktion. Bei anstößigen Benutzernamen wird der Account gesperrt. "
-                  "",
+                  "Es ist Webservice Rathje gestattet Emails über neue Updates an sie zu versenden.",
                 style: TextStyle(
                   fontSize: 15,
                 ),

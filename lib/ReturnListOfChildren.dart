@@ -35,7 +35,8 @@ class _PlayerList extends State<PlayerList> {
                     (
                       itemCount: Variablen.litems.length,
                       itemBuilder: (BuildContext ctxt, int Index) {
-                        var Data = Variablen.litems[Index];
+                        String Data = Variablen.litems[Index];
+                        print(Data.toString());
                         if(Data == ""){
                           return Container();
                         }

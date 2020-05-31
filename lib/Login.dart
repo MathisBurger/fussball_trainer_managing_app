@@ -7,12 +7,12 @@ import 'package:fussball_trainer_managing_app/Var.dart';
 import 'package:path_provider/path_provider.dart';
 
 
-class Register extends StatefulWidget{
+class Login extends StatefulWidget{
   @override
-  _Register createState() => _Register();
+  _Login createState() => _Login();
 }
 
-class _Register extends State<Register> {
+class _Login extends State<Login> {
   final Benutzername = TextEditingController();
   final Password = TextEditingController();
   final Email = TextEditingController();
@@ -20,7 +20,7 @@ class _Register extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registrieren",
+        title: Text("Login",
           style: TextStyle(
             fontSize: 25.0,
             fontWeight: FontWeight.bold,
@@ -48,12 +48,12 @@ class _Register extends State<Register> {
             ),
             Container(
               margin: EdgeInsets.only(top: 15),
-            child: Text("Benutzername (keine Sonderzeichen)",
-            style: TextStyle(
-              fontSize: 25
-            ),
-              textAlign: TextAlign.left,
-            ),
+              child: Text("Benutzername (keine Sonderzeichen)",
+                style: TextStyle(
+                    fontSize: 25
+                ),
+                textAlign: TextAlign.left,
+              ),
             ),
             Container(
               margin: EdgeInsets.only(top: 15),
@@ -77,40 +77,16 @@ class _Register extends State<Register> {
               ),
             ),
             Container(
-              child: SizedBox(
-                child: RaisedButton(
-                  child: Text("AGBs"),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/AGBs');
-                  },
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 15),
-              child: CheckboxListTile(
-                title: Text("Ich akzeptiere die AGBs und möchte über Email Infos über neue Updates bekommen"),
-                onChanged: (bool value) {
-                  Variablen.AGBs = !Variablen.AGBs;
-                  this.setState(() {
-
-                  });
-                },
-                value: Variablen.AGBs,
-
-              ),
-            ),
-            Container(
               margin: EdgeInsets.only(top: 25),
               child: SizedBox(
                 width: 300,
                 height: 50,
                 child: RaisedButton(
                   onPressed: () {
-                    RegisterAccount();
+                    LoginAccount();
                   },
                   color: Colors.blue,
-                  child: Text("Registrieren"),
+                  child: Text("Login"),
                 ),
               ),
             ),
@@ -119,24 +95,23 @@ class _Register extends State<Register> {
       ),
     );
   }
-  Future RegisterAccount() async {
+  Future LoginAccount() async {
     try {
       String email = Email.text;
       String user = Benutzername.text;
       String pwd = Password.text;
-      if (Variablen.AGBs) {
-        Benutzername.clear();
-        Password.clear();
-        Email.clear();
-        String request = "/registerFussballTrainerManagerApp?username=" + user +
-            "&password=" + pwd + "&email=" + email;
-        String response = await CallAPI(request);
-        File file = await _localFile;
-        if (await file.readAsString(encoding: utf8) != "") {
-          String toWrite = user + "!" + pwd + "!" + response;
-          await file.writeAsString(toWrite);
-        }
+      Benutzername.clear();
+      Password.clear();
+      Email.clear();
+      String request = "/loginFussballTrainerManagerApp?username=" + user +
+          "&password=" + pwd + "&email=" + email;
+      String response = await CallAPI(request);
+      File file = await _localFile;
+      if (await file.readAsString(encoding: utf8) != "") {
+        String toWrite = user + "!" + pwd + "!" + response;
+        await file.writeAsString(toWrite);
       }
+
     } catch (e){
       print(e.toString());
     }

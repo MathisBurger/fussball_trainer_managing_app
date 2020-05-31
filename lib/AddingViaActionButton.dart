@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fussball_trainer_managing_app/Var.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
@@ -35,18 +36,17 @@ class _AddingMenu extends State<AddingMenu>{
         backgroundColor: Colors.green,
       ),
       body: Container(
-        child: Column(
+        child: ListView(
           children: <Widget>[
             Container(
               margin: EdgeInsets.symmetric(
                 horizontal: 50,
-                vertical: 15,
+                vertical: 50,
               ),
               child: GestureDetector(
                 onTap: _getImage,
-                child: Text("Moin"),
-
-                ),
+                child: _image == null ? Icon(FontAwesomeIcons.plus) : Image.file(_image),
+              ),
               ),
             Container(
                 margin: EdgeInsets.symmetric(
@@ -128,6 +128,9 @@ class _AddingMenu extends State<AddingMenu>{
     print("Datei erfolgreich geschrieben");
     vornamecontroller.clear();
     nachnamecontroller.clear();
+    setState(() {
+      _image = null;
+    });
   }
 
 }
