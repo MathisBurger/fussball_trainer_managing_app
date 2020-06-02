@@ -108,6 +108,32 @@ class _Settings extends State<Settings> {
               ),
             ),
             Container(
+              margin: EdgeInsets.only(top: 25),
+              child: SizedBox(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  child: Text("Bilder-Pakete importieren"),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/ImportPicturePack');
+                  },
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              child: SizedBox(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  child: Text("Bilder-Pakete exportieren"),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/ExportPicturePack');
+                  },
+                ),
+              ),
+            ),
+            Container(
                 margin: EdgeInsets.only(top: 450),
                 child: Text("App Version: v1.0.0      ©2020 Mathis Burger"),
               ),

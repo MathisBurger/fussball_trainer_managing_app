@@ -84,7 +84,7 @@ class _AddingMenu extends State<AddingMenu>{
                       vorname = vornamecontroller.text;
                       nachname = nachnamecontroller.text;
                       final directory = await _localPath;
-                      final String path = directory + vorname + "!" + nachname + ".txt";
+                      final String path = directory + "/" + vorname + "!" + nachname + ".jpg";
                       _image.rename(path);
                       String textname = vorname + "!" + nachname + "!0\n";
                       WriteData(textname);
