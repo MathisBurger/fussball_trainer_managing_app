@@ -36,6 +36,7 @@ class _ExportPicturePack extends State<ExportPicturePack> {
                 "beispielsweise auf einem weiteren Gerät nutzen zu können. Aus Datenschutzrechtlichen Gründen, werden wir nie Bilder speichern.",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
               ),
               textAlign: TextAlign.center,
             ),

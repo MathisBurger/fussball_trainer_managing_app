@@ -14,6 +14,8 @@ class Variablen {
   static Color BackgroundColor;
   static Color TopbarColor;
   static Color Textcolor;
+  static Color BlueWidget;
+  static Color RedWidget;
   //Register
 static bool AGBs = false;
 }

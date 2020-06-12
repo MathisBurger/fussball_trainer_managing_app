@@ -47,10 +47,7 @@ class _ImportPicturePack extends State<ImportPicturePack> {
               width: 300,
               height: 50,
               child: RaisedButton(
-                child: Text("Import",
-                style: TextStyle(
-                  color: Variablen.Textcolor,
-                ),),
+                child: Text("Import"),
                 onPressed: () {
                   ImportPicturePack();
                 },

@@ -21,13 +21,17 @@ class _HomeState extends State<Home> {
     LoadBackupState();
     LoadDarkModeState();
     if(Variablen.Darkmode){
-      Variablen.BackgroundColor = Color.fromRGBO(64, 64, 64, 1);
+      Variablen.BackgroundColor = Color.fromRGBO(33, 37, 43, 1);
       Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
       Variablen.Textcolor = Colors.white;
+      Variablen.BlueWidget = Color.fromRGBO(0, 76, 153, 1);
+      Variablen.RedWidget = Color.fromRGBO(153, 0, 0, 1);
     } else {
       Variablen.BackgroundColor = Color.fromRGBO(192, 192, 192, 1);
       Variablen.TopbarColor = Colors.green;
       Variablen.Textcolor = Colors.black;
+      Variablen.BlueWidget = Colors.blueAccent;
+      Variablen.RedWidget = Colors.redAccent;
     }
     if(Variablen.AutoBackup){
       Backup();
@@ -57,11 +61,11 @@ class _HomeState extends State<Home> {
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.blueAccent,
+                          color: Variablen.BlueWidget,
                           width: 7,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
-                        color: Colors.blueAccent,
+                        color: Variablen.BlueWidget,
                       ),
 
                       height: 200,
@@ -103,11 +107,11 @@ class _HomeState extends State<Home> {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.redAccent,
+                        color: Variablen.RedWidget,
                         width: 7,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(16)),
-                      color: Colors.redAccent,
+                      color: Variablen.RedWidget,
                     ),
 
                     height: 200,

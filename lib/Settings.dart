@@ -77,13 +77,17 @@ class _Settings extends State<Settings> {
                           Variablen.Darkmode = !Variablen.Darkmode;
                           ChangeDarkModeState();
                           if(Variablen.Darkmode){
-                            Variablen.BackgroundColor = Color.fromRGBO(64, 64, 64, 1);
+                            Variablen.BackgroundColor = Color.fromRGBO(33, 37, 43, 1);
                             Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
                             Variablen.Textcolor = Colors.white;
+                            Variablen.BlueWidget = Color.fromRGBO(0, 76, 153, 1);
+                            Variablen.RedWidget = Color.fromRGBO(153, 0, 0, 1);
                           } else {
                             Variablen.BackgroundColor = Color.fromRGBO(192, 192, 192, 1);
                             Variablen.TopbarColor = Colors.green;
                             Variablen.Textcolor = Colors.black;
+                            Variablen.BlueWidget = Colors.blueAccent;
+                            Variablen.RedWidget = Colors.redAccent;
                           }
                         });
                       },
@@ -173,7 +177,10 @@ class _Settings extends State<Settings> {
             ),
             Container(
                 margin: EdgeInsets.only(top: 450),
-                child: Text("App Version: v1.0.0      ©2020 Mathis Burger"),
+                child: Text("App Version: v1.0.0      ©2020 Mathis Burger",
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),),
               ),
           ],
         ),
