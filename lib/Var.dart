@@ -9,7 +9,6 @@ class Variablen {
   //Settings
   static bool AutoBackup = true;
   static bool BackupOnLoad = true;
-
   //Darkmode
   static bool Darkmode = true;
   static Color BackgroundColor;

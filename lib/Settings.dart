@@ -81,7 +81,7 @@ class _Settings extends State<Settings> {
                             Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
                             Variablen.Textcolor = Colors.white;
                           } else {
-                            Variablen.BackgroundColor = Colors.white;
+                            Variablen.BackgroundColor = Color.fromRGBO(192, 192, 192, 1);
                             Variablen.TopbarColor = Colors.green;
                             Variablen.Textcolor = Colors.black;
                           }
@@ -264,7 +264,7 @@ class _Settings extends State<Settings> {
       File('$path/darkmode.txt').create(recursive: true);
       File('$path/darkmode.txt').writeAsString("true");
     }
-    return File('$path/backups.txt');
+    return File('$path/darkmode.txt');
   }
   Future LoadLastBackup() async {
     File file1 = await _localFile3;

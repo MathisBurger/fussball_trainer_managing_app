@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:fussball_trainer_managing_app/Var.dart';
+import 'Var.dart';
 import 'package:fussball_trainer_managing_app/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
       Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
       Variablen.Textcolor = Colors.white;
     } else {
-      Variablen.BackgroundColor = Colors.white;
+      Variablen.BackgroundColor = Color.fromRGBO(192, 192, 192, 1);
       Variablen.TopbarColor = Colors.green;
       Variablen.Textcolor = Colors.black;
     }
@@ -50,12 +50,7 @@ class _HomeState extends State<Home> {
           ),
           body: Center(
             child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/stadion.jpg"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                color: Variablen.BackgroundColor,
                 width: 400,
                 child: Column(
                   children: <Widget>[
@@ -170,8 +165,6 @@ class _HomeState extends State<Home> {
                 )
             ),
           ),
-
-
       );
   }
   Future<String> get _localPath async {
@@ -311,6 +304,9 @@ class _HomeState extends State<Home> {
       } else {
         Variablen.Darkmode = false;
       }
+      setState(() {
+
+      });
     } catch (e){}
   }
   Future get _localFile5 async {
@@ -319,6 +315,6 @@ class _HomeState extends State<Home> {
       File('$path/darkmode.txt').create(recursive: true);
       File('$path/darkmode.txt').writeAsString("true");
     }
-    return File('$path/backups.txt');
+    return File('$path/darkmode.txt');
   }
 }
