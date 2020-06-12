@@ -7,7 +7,10 @@ class Variablen {
   static List<String> Player_Names = [];
   static List<bool> Player_States = [];
   static double TrainingsGesamt = 0;
+
+  //Trainings
   static File activeFile;
+  static String date;
 
   //Settings
   static bool AutoBackup = true;

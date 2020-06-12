@@ -15,7 +15,7 @@ class _TrainingsInformation extends State<TrainingsInformation> {
             onPressed: () { Navigator.pushNamed(context, '/settings'); },
           )
         ],
-        title: Text("Trainer Manager",
+        title: Text(Variablen.date,
           style: TextStyle(
             fontSize: 25.0,
             fontWeight: FontWeight.bold,
@@ -39,8 +39,17 @@ class _TrainingsInformation extends State<TrainingsInformation> {
               ),
               new Expanded(
                 child: ListView.builder(
+                    itemCount: Variablen.activeFile.readAsStringSync().split("\n").length,
                     itemBuilder: (BuildContext context, int Index){
-                      return Text();
+                      String data = Variablen.activeFile.readAsStringSync();
+                      var raw = data.split("\n");
+                      return Text(raw[Index],
+                      style: TextStyle(
+                        color: Variablen.Textcolor,
+                        fontSize: 18
+                      ),
+                        textAlign: TextAlign.center,
+                      );
                     }
 
                 ),

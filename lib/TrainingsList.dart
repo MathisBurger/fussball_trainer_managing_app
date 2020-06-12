@@ -77,7 +77,9 @@ class _TrainingsList extends State<TrainingsList>{
                   child: RaisedButton(
                     color: Variablen.ButtonColor,
                     onPressed: () {
-
+                        Variablen.activeFile = File(Variablen.DocumentRoot + "/trainings/" + date + ".txt");
+                        Variablen.date = date;
+                        Navigator.pushNamed(context, '/AnwesendheitsListe');
                     },
                     child: Text("mehr lesen",
                     style: TextStyle(
