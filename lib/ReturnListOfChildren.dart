@@ -56,7 +56,7 @@ class _PlayerList extends State<PlayerList> {
                           height: 200,
                           margin: EdgeInsets.only(top: 15),
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Variablen.BlueWidget,
                           ),
                           child: Column(
                             children: <Widget>[
@@ -70,7 +70,7 @@ class _PlayerList extends State<PlayerList> {
                                   textAlign: TextAlign.center,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Variablen.ButtonColor,
                                   borderRadius: BorderRadius.all(Radius.circular(8)),
                                 ),
                               ),
@@ -87,7 +87,7 @@ class _PlayerList extends State<PlayerList> {
                                         width: 240,
                                         height: 120,
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Variablen.ButtonColor,
                                           borderRadius: BorderRadius.all(Radius.circular(8)),
                                         ),
                                         child: Column(

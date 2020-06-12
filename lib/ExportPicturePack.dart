@@ -47,6 +47,7 @@ class _ExportPicturePack extends State<ExportPicturePack> {
               width: 300,
               height: 50,
               child: RaisedButton(
+                color: Variablen.ButtonColor,
                 child: Text("Export"),
                 onPressed: () {
                   ExportData(context);

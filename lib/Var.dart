@@ -16,6 +16,7 @@ class Variablen {
   static Color Textcolor;
   static Color BlueWidget;
   static Color RedWidget;
+  static Color ButtonColor;
   //Register
 static bool AGBs = false;
 }

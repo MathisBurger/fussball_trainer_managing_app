@@ -47,7 +47,7 @@ class _AddingMenu extends State<AddingMenu>{
               ),
               child: GestureDetector(
                 onTap: _getImage,
-                child: _image == null ? Icon(FontAwesomeIcons.plus) : Image.file(_image),
+                child: _image == null ? Icon(FontAwesomeIcons.plus, color: Variablen.Textcolor,) : Image.file(_image),
               ),
               ),
             Container(
@@ -58,7 +58,13 @@ class _AddingMenu extends State<AddingMenu>{
                 child: TextField(
                   controller: vornamecontroller,
                   decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Variablen.Textcolor
+                      )),
                     hintText: "Vorname",
+                    hintStyle: TextStyle(
+                      color: Variablen.Textcolor,
+                    )
                   ),
                 )
             ),
@@ -70,7 +76,13 @@ class _AddingMenu extends State<AddingMenu>{
                 child: TextField(
                   controller: nachnamecontroller,
                   decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Variablen.Textcolor
+                        )),
                     hintText: "Nachname",
+                      hintStyle: TextStyle(
+                        color: Variablen.Textcolor,
+                      )
                   ),
                 )
             ),
@@ -80,7 +92,7 @@ class _AddingMenu extends State<AddingMenu>{
                   width: 250,
                   height: 50,
                   child: RaisedButton(
-                    color: Colors.lightBlue,
+                    color: Variablen.BlueWidget,
                     child: Text("Registrieren"),
                     onPressed: () async {
                       vorname = vornamecontroller.text;

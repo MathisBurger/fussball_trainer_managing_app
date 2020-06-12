@@ -42,20 +42,33 @@ class _AddTraining extends State<AddTraining> {
                             }
                             return Container(
                                 height: 35,
-                                child: CheckboxListTile(
-                                title: Text(Variablen.Player_Names[Index]),
-                                value: Variablen.Player_States[Index],
-                                onChanged: (bool value) {
-                                  this.setState(() {
-                                    Variablen.Player_States[Index] = value;
-                                  });
-                                },
-                            ));
-                          }),
+                                child: Row(
+                                  children: <Widget>[
+                                    Theme(
+                                        data: ThemeData(unselectedWidgetColor: Variablen.Textcolor),
+                                        child:Checkbox(
+                                          activeColor: Variablen.BlueWidget,
+                                          value: Variablen.Player_States[Index],
+                                          onChanged: (bool value) {
+                                            this.setState(() {
+                                              Variablen.Player_States[Index] = value;
+                                            });
+                                          },
+                                        )),
+                                    Text(Variablen.Player_Names[Index],
+                                    style: TextStyle(
+                                      color: Variablen.Textcolor,
+                                    ),
+                                    ),
+                                  ],
+                                )
+                            );
+
+                          })
                   ),
                   Container(
                     child: RaisedButton(
-                      color: Colors.blue,
+                      color: Variablen.BlueWidget,
                       onPressed: () {
                         AddEinheit();
                       },

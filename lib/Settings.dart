@@ -73,8 +73,8 @@ class _Settings extends State<Settings> {
                     margin: EdgeInsets.only(left: 50),
                     child: Switch(
                       onChanged: (bool value) {
+                        Variablen.Darkmode = !Variablen.Darkmode;
                         this.setState(() {
-                          Variablen.Darkmode = !Variablen.Darkmode;
                           ChangeDarkModeState();
                           if(Variablen.Darkmode){
                             Variablen.BackgroundColor = Color.fromRGBO(33, 37, 43, 1);
@@ -82,12 +82,14 @@ class _Settings extends State<Settings> {
                             Variablen.Textcolor = Colors.white;
                             Variablen.BlueWidget = Color.fromRGBO(0, 76, 153, 1);
                             Variablen.RedWidget = Color.fromRGBO(153, 0, 0, 1);
+                            Variablen.ButtonColor = Color.fromRGBO(176, 176, 176, 1);
                           } else {
                             Variablen.BackgroundColor = Color.fromRGBO(192, 192, 192, 1);
                             Variablen.TopbarColor = Colors.green;
                             Variablen.Textcolor = Colors.black;
                             Variablen.BlueWidget = Colors.blueAccent;
                             Variablen.RedWidget = Colors.redAccent;
+                            Variablen.ButtonColor = Colors.white;
                           }
                         });
                       },
@@ -103,6 +105,7 @@ class _Settings extends State<Settings> {
                 width: 300,
               height: 50,
               child: RaisedButton(
+                color: Variablen.ButtonColor,
                 child: Text("Manuelles Backup"),
                 onPressed: () {
                   Backup();
@@ -116,6 +119,7 @@ class _Settings extends State<Settings> {
                 width: 300,
                 height: 50,
                 child: RaisedButton(
+                  color: Variablen.ButtonColor,
                   child: Text("Letzes Backup laden"),
                   onPressed: () {
                     LoadLastBackup();
@@ -129,6 +133,7 @@ class _Settings extends State<Settings> {
                 width: 300,
                 height: 50,
                 child: RaisedButton(
+                  color: Variablen.ButtonColor,
                   child: Text("Registrieren"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/register');
@@ -142,6 +147,7 @@ class _Settings extends State<Settings> {
                 width: 300,
                 height: 50,
                 child: RaisedButton(
+                  color: Variablen.ButtonColor,
                   child: Text("Login"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/Login');
@@ -155,6 +161,7 @@ class _Settings extends State<Settings> {
                 width: 300,
                 height: 50,
                 child: RaisedButton(
+                  color: Variablen.ButtonColor,
                   child: Text("Bilder-Pakete importieren"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/ImportPicturePack');
@@ -168,6 +175,7 @@ class _Settings extends State<Settings> {
                 width: 300,
                 height: 50,
                 child: RaisedButton(
+                  color: Variablen.ButtonColor,
                   child: Text("Bilder-Pakete exportieren"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/ExportPicturePack');

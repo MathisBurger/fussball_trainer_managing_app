@@ -45,6 +45,15 @@ class _Login extends State<Login> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: TextField(
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Variablen.Textcolor
+                    ),
+                  ),
+                ),
                 controller: Email,
               ),
             ),
@@ -61,6 +70,15 @@ class _Login extends State<Login> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: TextField(
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Variablen.Textcolor
+                    ),
+                  ),
+                ),
                 controller: Benutzername,
               ),
             ),
@@ -77,6 +95,15 @@ class _Login extends State<Login> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: TextField(
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Variablen.Textcolor
+                    ),
+                  ),
+                ),
                 controller: Password,
               ),
             ),
@@ -89,7 +116,7 @@ class _Login extends State<Login> {
                   onPressed: () {
                     LoginAccount();
                   },
-                  color: Colors.blue,
+                  color: Variablen.BlueWidget,
                   child: Text("Login"),
                 ),
               ),

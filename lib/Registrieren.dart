@@ -45,7 +45,16 @@ class _Register extends State<Register> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: TextField(
-                controller: Email,
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Variablen.Textcolor
+                    ),
+                  ),
+                ),
+                  controller: Email,
               ),
             ),
             Container(
@@ -61,6 +70,15 @@ class _Register extends State<Register> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: TextField(
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Variablen.Textcolor
+                    ),
+                  ),
+                ),
                 controller: Benutzername,
               ),
             ),
@@ -77,12 +95,22 @@ class _Register extends State<Register> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: TextField(
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Variablen.Textcolor
+                    ),
+                  ),
+                ),
                 controller: Password,
               ),
             ),
             Container(
               child: SizedBox(
                 child: RaisedButton(
+                  color: Variablen.ButtonColor,
                   child: Text("AGBs"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/AGBs');
@@ -92,20 +120,28 @@ class _Register extends State<Register> {
             ),
             Container(
               margin: EdgeInsets.only(top: 15),
-              child: CheckboxListTile(
-                title: Text("Ich akzeptiere die AGBs und möchte über Email Infos über neue Updates bekommen",
-                style: TextStyle(
-                  color: Variablen.Textcolor,
-                ),
-                ),
-                onChanged: (bool value) {
-                  Variablen.AGBs = !Variablen.AGBs;
-                  this.setState(() {
+              child: Row(
+                children: <Widget>[
+              Theme(
+              data: ThemeData(unselectedWidgetColor: Variablen.Textcolor),
+                child: Checkbox(
+                    activeColor: Variablen.BlueWidget,
+                    onChanged: (bool value) {
+                      Variablen.AGBs = !Variablen.AGBs;
+                      this.setState(() {
 
-                  });
-                },
-                value: Variablen.AGBs,
+                      });
+                    },
+                    value: Variablen.AGBs,
 
+                  )),
+                  Text("Ich akzeptiere die AGBs",
+                    style: TextStyle(
+                      color: Variablen.Textcolor,
+                    ),
+
+              ),
+                ],
               ),
             ),
             Container(
@@ -117,7 +153,7 @@ class _Register extends State<Register> {
                   onPressed: () {
                     RegisterAccount();
                   },
-                  color: Colors.blue,
+                  color: Variablen.ButtonColor,
                   child: Text("Registrieren"),
                 ),
               ),

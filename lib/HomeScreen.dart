@@ -26,12 +26,14 @@ class _HomeState extends State<Home> {
       Variablen.Textcolor = Colors.white;
       Variablen.BlueWidget = Color.fromRGBO(0, 76, 153, 1);
       Variablen.RedWidget = Color.fromRGBO(153, 0, 0, 1);
+      Variablen.ButtonColor = Color.fromRGBO(176, 176, 176, 1);
     } else {
       Variablen.BackgroundColor = Color.fromRGBO(192, 192, 192, 1);
       Variablen.TopbarColor = Colors.green;
       Variablen.Textcolor = Colors.black;
       Variablen.BlueWidget = Colors.blueAccent;
       Variablen.RedWidget = Colors.redAccent;
+      Variablen.ButtonColor = Colors.white;
     }
     if(Variablen.AutoBackup){
       Backup();
@@ -78,7 +80,7 @@ class _HomeState extends State<Home> {
                             width: 300,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(8)),
-                              color: Colors.white,
+                              color: Variablen.ButtonColor,
                             ),
                             child: Text("Spieler Daten",
                               style: TextStyle(
@@ -94,6 +96,7 @@ class _HomeState extends State<Home> {
                                   width: 300,
                                   height: 125,
                                   child: RaisedButton(
+                                    color: Variablen.ButtonColor,
                                     onPressed: () {
                                       PlayerList();
                                       },
@@ -124,7 +127,7 @@ class _HomeState extends State<Home> {
                           width: 300,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(8)),
-                            color: Colors.white,
+                            color: Variablen.ButtonColor,
                           ),
                           child: Text("Hinzufügen",
                             style: TextStyle(
@@ -144,6 +147,7 @@ class _HomeState extends State<Home> {
                                     width: 300,
                                     height: 25,
                                     child: RaisedButton(
+                                      color: Variablen.ButtonColor,
                                       onPressed: () {
                                         GetNameOfPlayers();
                                         },
@@ -155,6 +159,7 @@ class _HomeState extends State<Home> {
                                     width: 300,
                                     height: 25,
                                     child: RaisedButton(
+                                      color: Variablen.ButtonColor,
                                       onPressed: () { Navigator.pushNamed(context, '/AddPlayer'); },
                                       child: Text("Spieler hinzufügen"),),),
                                 ),
