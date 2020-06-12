@@ -17,7 +17,18 @@ class _HomeState extends State<Home> {
     _localFile2;
     _localFile3;
     _localFile4;
+    _localFile5;
     LoadBackupState();
+    LoadDarkModeState();
+    if(Variablen.Darkmode){
+      Variablen.BackgroundColor = Color.fromRGBO(64, 64, 64, 1);
+      Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
+      Variablen.Textcolor = Colors.white;
+    } else {
+      Variablen.BackgroundColor = Colors.white;
+      Variablen.TopbarColor = Colors.green;
+      Variablen.Textcolor = Colors.black;
+    }
     if(Variablen.AutoBackup){
       Backup();
     }
@@ -35,7 +46,7 @@ class _HomeState extends State<Home> {
                 fontWeight: FontWeight.bold,
               ),),
             centerTitle: true,
-            backgroundColor: Colors.green,
+            backgroundColor: Variablen.TopbarColor,
           ),
           body: Center(
             child: Container(
@@ -291,5 +302,23 @@ class _HomeState extends State<Home> {
       }
     } catch (e){}
   }
-
+  Future LoadDarkModeState() async {
+    try{
+      File file = await _localFile5;
+      String data = await file.readAsString(encoding: utf8);
+      if(data == "true"){
+        Variablen.Darkmode = true;
+      } else {
+        Variablen.Darkmode = false;
+      }
+    } catch (e){}
+  }
+  Future get _localFile5 async {
+    final path = await _localPath;
+    if(!File('$path/darkmode.txt').existsSync()){
+      File('$path/darkmode.txt').create(recursive: true);
+      File('$path/darkmode.txt').writeAsString("true");
+    }
+    return File('$path/backups.txt');
+  }
 }

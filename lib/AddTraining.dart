@@ -27,9 +27,10 @@ class _AddTraining extends State<AddTraining> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
-      body: Center(
+      body: Container(
+        color: Variablen.BackgroundColor,
         child: Column(
                 children: <Widget>[
                   new Expanded(

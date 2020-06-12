@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 class Variablen {
   static List<String> litems = [];
   static String DocumentRoot = "";
@@ -9,6 +10,11 @@ class Variablen {
   static bool AutoBackup = true;
   static bool BackupOnLoad = true;
 
+  //Darkmode
+  static bool Darkmode = true;
+  static Color BackgroundColor;
+  static Color TopbarColor;
+  static Color Textcolor;
   //Register
 static bool AGBs = false;
 }

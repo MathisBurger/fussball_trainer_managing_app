@@ -26,16 +26,18 @@ class _Register extends State<Register> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
-      body: Center(
+      body: Container(
+        color: Variablen.BackgroundColor,
         child: ListView(
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 15),
               child: Text("Email",
                 style: TextStyle(
-                    fontSize: 25
+                    fontSize: 25,
+                    color: Variablen.Textcolor
                 ),
                 textAlign: TextAlign.left,
               ),
@@ -50,7 +52,8 @@ class _Register extends State<Register> {
               margin: EdgeInsets.only(top: 15),
             child: Text("Benutzername (keine Sonderzeichen)",
             style: TextStyle(
-              fontSize: 25
+              fontSize: 25,
+              color: Variablen.Textcolor,
             ),
               textAlign: TextAlign.left,
             ),
@@ -65,7 +68,8 @@ class _Register extends State<Register> {
               margin: EdgeInsets.only(top: 15),
               child: Text("Password",
                 style: TextStyle(
-                    fontSize: 25
+                    fontSize: 25,
+                    color: Variablen.Textcolor,
                 ),
                 textAlign: TextAlign.left,
               ),
@@ -89,7 +93,11 @@ class _Register extends State<Register> {
             Container(
               margin: EdgeInsets.only(top: 15),
               child: CheckboxListTile(
-                title: Text("Ich akzeptiere die AGBs und möchte über Email Infos über neue Updates bekommen"),
+                title: Text("Ich akzeptiere die AGBs und möchte über Email Infos über neue Updates bekommen",
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),
+                ),
                 onChanged: (bool value) {
                   Variablen.AGBs = !Variablen.AGBs;
                   this.setState(() {

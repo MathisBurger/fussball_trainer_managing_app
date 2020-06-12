@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fussball_trainer_managing_app/Var.dart';
 import 'package:image_picker/image_picker.dart';
@@ -33,9 +34,10 @@ class _AddingMenu extends State<AddingMenu>{
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
       body: Container(
+        color: Variablen.BackgroundColor,
         child: ListView(
           children: <Widget>[
             Container(
@@ -85,7 +87,14 @@ class _AddingMenu extends State<AddingMenu>{
                       nachname = nachnamecontroller.text;
                       final directory = await _localPath;
                       final String path = directory + "/" + vorname + "!" + nachname + ".jpg";
-                      _image.rename(path);
+                      if(_image == null) {
+                        var bytes = await rootBundle.load("assets/blank.jpg");
+                        File file = await File(path).create(recursive: true);
+                        await file.writeAsBytes(bytes.buffer.asUint8List(
+                            bytes.offsetInBytes, bytes.lengthInBytes));
+                      } else {
+                        _image.rename(path);
+                      }
                       String textname = vorname + "!" + nachname + "!0\n";
                       WriteData(textname);
                     },)
@@ -99,10 +108,9 @@ class _AddingMenu extends State<AddingMenu>{
   Future _getImage() async{
     try {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-      setState(() {
-        _image = image;
-      });
+        setState(() {
+          _image = image;
+        });
     } catch (e){
       print(e.toString());
     }

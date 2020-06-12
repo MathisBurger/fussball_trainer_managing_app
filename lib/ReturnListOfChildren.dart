@@ -26,9 +26,11 @@ class _PlayerList extends State<PlayerList> {
                 fontWeight: FontWeight.bold,
               ),),
             centerTitle: true,
-            backgroundColor: Colors.green,
+            backgroundColor: Variablen.TopbarColor,
           ),
-          body: new Column(
+          body: Container(
+          color: Variablen.BackgroundColor,
+          child: new Column(
             children: <Widget>[
               new Expanded(
                   child: new ListView.builder
@@ -125,7 +127,8 @@ class _PlayerList extends State<PlayerList> {
                   )
               )
             ],
-          )
+          ),
+          ),
       );
   }
 

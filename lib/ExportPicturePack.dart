@@ -23,9 +23,11 @@ class _ExportPicturePack extends State<ExportPicturePack> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
-      body: Column(
+      body: Container(
+        color: Variablen.BackgroundColor,
+        child: Column(
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 25),
@@ -52,6 +54,7 @@ class _ExportPicturePack extends State<ExportPicturePack> {
             ),
           ),
         ],
+      ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fussball_trainer_managing_app/Var.dart';
 
 class AGBs extends StatefulWidget {
   _AGBs createState() => _AGBs();
@@ -16,9 +17,10 @@ class _AGBs extends State<AGBs> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
-      body: Center(
+      body: Container(
+        color: Variablen.BackgroundColor,
         child: ListView(
           children: <Widget>[
             Container(
@@ -26,6 +28,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Datennutzung",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
                 fontWeight: FontWeight.bold,
               ),
                 textAlign: TextAlign.center,
@@ -39,6 +42,7 @@ class _AGBs extends State<AGBs> {
                   "Es ist Webservice Rathje gestattet Emails über neue Updates an sie zu versenden.",
                 style: TextStyle(
                   fontSize: 15,
+                  color: Variablen.Textcolor,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -48,6 +52,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Rechtliche Grunflagen",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
                 fontWeight: FontWeight.bold,
               ),
                 textAlign: TextAlign.center,
@@ -60,6 +65,7 @@ class _AGBs extends State<AGBs> {
                   "welche in der App verwendet werden, um Nutzungserlaubnis gefragt werden. Jeder Verstoß wird strafrechtlich verfolgt.",
               style: TextStyle(
                 fontSize: 15,
+                color: Variablen.Textcolor,
               ),
                 textAlign: TextAlign.center,
               ),
@@ -69,6 +75,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Widerrufung",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
                 fontWeight: FontWeight.bold,
               ),
                 textAlign: TextAlign.center,
@@ -80,6 +87,7 @@ class _AGBs extends State<AGBs> {
                   "bis der Kunde ein neues Backup hochlädt. Bei den Backups gelten die Voraussetzungen aus dem Abschnitt Datennutzung.",
               style: TextStyle(
                 fontSize: 15,
+                color: Variablen.Textcolor,
               ),
                 textAlign: TextAlign.center,
               ),
@@ -89,6 +97,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Eigentumsvorbehalt",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
                 fontWeight: FontWeight.bold,
               ),
                 textAlign: TextAlign.center,
@@ -99,6 +108,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Die App bleibt Eigentum von Mathis Burger. Die Vermarktungsrechte sind Webservice Rathje vorbehalten.",
               style: TextStyle(
                 fontSize: 15,
+                color: Variablen.Textcolor,
               ),
                 textAlign: TextAlign.center,
               ),
@@ -108,6 +118,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Haftung",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
                 fontWeight: FontWeight.bold,
               ),
                 textAlign: TextAlign.center,
@@ -120,6 +131,7 @@ class _AGBs extends State<AGBs> {
                   "sind erkennbar. Somit gilt die Selbsthaftung und der Kunde ist selbst verantwortlich.",
               style: TextStyle(
                 fontSize: 15,
+                color: Variablen.Textcolor,
               ),
                 textAlign: TextAlign.center,
               ),
@@ -129,6 +141,7 @@ class _AGBs extends State<AGBs> {
               child: Text("Quellen",
               style: TextStyle(
                 fontSize: 20,
+                color: Variablen.Textcolor,
                 fontWeight: FontWeight.bold,
               ),
                 textAlign: TextAlign.center,
@@ -138,14 +151,14 @@ class _AGBs extends State<AGBs> {
               margin: EdgeInsets.only(top: 5),
               child: Column(
                 children: <Widget>[
-                  Text("Quellcode:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-                  Text("https://github.com/MathisBurger/fussball_trainer_managing_app", style: TextStyle(fontSize: 15,),textAlign: TextAlign.center,),
-                  Text("Mathis Burger:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-                  Text("https://mathis-burger.de/", style: TextStyle(fontSize: 15),textAlign: TextAlign.center),
-                  Text("Webservice Rathje:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-                  Text("https://webservice-rathje.de/", style: TextStyle(fontSize: 15),textAlign: TextAlign.center),
-                  Text("Flutter Framework:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-                  Text("https://flutter.dev/", style: TextStyle(fontSize: 15),textAlign: TextAlign.center),
+                  Text("Quellcode:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Variablen.Textcolor,), textAlign: TextAlign.center,),
+                  Text("https://github.com/MathisBurger/fussball_trainer_managing_app", style: TextStyle(fontSize: 15, color: Variablen.Textcolor,),textAlign: TextAlign.center,),
+                  Text("Mathis Burger:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Variablen.Textcolor,), textAlign: TextAlign.center,),
+                  Text("https://mathis-burger.de/", style: TextStyle(fontSize: 15, color: Variablen.Textcolor,),textAlign: TextAlign.center),
+                  Text("Webservice Rathje:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Variablen.Textcolor,), textAlign: TextAlign.center,),
+                  Text("https://webservice-rathje.de/", style: TextStyle(fontSize: 15, color: Variablen.Textcolor,),textAlign: TextAlign.center),
+                  Text("Flutter Framework:", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Variablen.Textcolor,), textAlign: TextAlign.center,),
+                  Text("https://flutter.dev/", style: TextStyle(fontSize: 15, color: Variablen.Textcolor,),textAlign: TextAlign.center),
                 ],
               ),
             ),

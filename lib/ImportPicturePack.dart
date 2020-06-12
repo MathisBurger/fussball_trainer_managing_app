@@ -23,9 +23,11 @@ class _ImportPicturePack extends State<ImportPicturePack> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
-      body: Column(
+      body: Container(
+        color: Variablen.BackgroundColor,
+        child: Column(
         children: <Widget>[
           Container(
           margin: EdgeInsets.only(top: 25),
@@ -34,6 +36,7 @@ class _ImportPicturePack extends State<ImportPicturePack> {
               "Importiere die ZIP-Datei, welche du zuvor exportiert hast.",
           style: TextStyle(
             fontSize: 20,
+            color: Variablen.Textcolor,
           ),
             textAlign: TextAlign.center,
           ),
@@ -44,7 +47,10 @@ class _ImportPicturePack extends State<ImportPicturePack> {
               width: 300,
               height: 50,
               child: RaisedButton(
-                child: Text("Import"),
+                child: Text("Import",
+                style: TextStyle(
+                  color: Variablen.Textcolor,
+                ),),
                 onPressed: () {
                   ImportPicturePack();
                 },
@@ -52,6 +58,7 @@ class _ImportPicturePack extends State<ImportPicturePack> {
             ),
           ),
         ],
+      ),
       ),
     );
   }

@@ -24,9 +24,10 @@ class _Settings extends State<Settings> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Variablen.TopbarColor,
       ),
-      body: Center(
+      body: Container(
+        color: Variablen.BackgroundColor,
         child: ListView(
           children: <Widget>[
             Container(
@@ -37,6 +38,7 @@ class _Settings extends State<Settings> {
                   child: Text("Automatische Backups\n(Sie müssen sich registrieren)",
                       style: TextStyle(
                         fontSize: 20,
+                        color: Variablen.Textcolor,
                       ),
                       ),
                   ),
@@ -50,6 +52,42 @@ class _Settings extends State<Settings> {
                           });
                       },
                       value: Variablen.AutoBackup,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 15),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Text("Darkmode",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Variablen.Textcolor,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 50),
+                    child: Switch(
+                      onChanged: (bool value) {
+                        this.setState(() {
+                          Variablen.Darkmode = !Variablen.Darkmode;
+                          ChangeDarkModeState();
+                          if(Variablen.Darkmode){
+                            Variablen.BackgroundColor = Color.fromRGBO(64, 64, 64, 1);
+                            Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
+                            Variablen.Textcolor = Colors.white;
+                          } else {
+                            Variablen.BackgroundColor = Colors.white;
+                            Variablen.TopbarColor = Colors.green;
+                            Variablen.Textcolor = Colors.black;
+                          }
+                        });
+                      },
+                      value: Variablen.Darkmode,
                     ),
                   )
                 ],
@@ -201,11 +239,30 @@ class _Settings extends State<Settings> {
       }
     }catch (e){}
   }
+  Future ChangeDarkModeState() async {
+    try{
+      File file = await _localFile5;
+      String data = await file.readAsString(encoding: utf8);
+      if(data == "true"){
+        file.writeAsString("false");
+      }else {
+        file.writeAsString("true");
+      }
+    }catch (e){}
+  }
   Future get _localFile4 async {
     final path = await _localPath;
     if(!File('$path/backups.txt').existsSync()){
       File('$path/backups.txt').create(recursive: true);
       File('$path/backups.txt').writeAsString("null");
+    }
+    return File('$path/backups.txt');
+  }
+  Future get _localFile5 async {
+    final path = await _localPath;
+    if(!File('$path/darkmode.txt').existsSync()){
+      File('$path/darkmode.txt').create(recursive: true);
+      File('$path/darkmode.txt').writeAsString("true");
     }
     return File('$path/backups.txt');
   }
