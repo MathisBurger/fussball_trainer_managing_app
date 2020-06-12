@@ -56,6 +56,9 @@ class _AddingMenu extends State<AddingMenu>{
                   vertical: 15,
                 ),
                 child: TextField(
+                  style: TextStyle(
+                    color: Variablen.Textcolor,
+                  ),
                   controller: vornamecontroller,
                   decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
@@ -74,6 +77,9 @@ class _AddingMenu extends State<AddingMenu>{
                   vertical: 5,
                 ),
                 child: TextField(
+                  style: TextStyle(
+                    color: Variablen.Textcolor,
+                  ),
                   controller: nachnamecontroller,
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(

@@ -9,6 +9,7 @@ import 'package:fussball_trainer_managing_app/Login.dart';
 import 'package:fussball_trainer_managing_app/Registrieren.dart';
 import 'package:fussball_trainer_managing_app/ReturnListOfChildren.dart';
 import 'package:fussball_trainer_managing_app/Settings.dart';
+import 'package:fussball_trainer_managing_app/TrainingsList.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -24,6 +25,7 @@ void main() {
     '/Login': (context) => Login(),
     '/ImportPicturePack': (context) => ImportPicturePack(),
     '/ExportPicturePack': (context) => ExportPicturePack(),
+    '/TraingsListen': (context) => TrainingsList(),
   },
 ));
 }

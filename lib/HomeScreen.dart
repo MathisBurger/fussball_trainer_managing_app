@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
     _localFile5;
     LoadBackupState();
     LoadDarkModeState();
+    setTrainingsValue();
     if(Variablen.Darkmode){
       Variablen.BackgroundColor = Color.fromRGBO(33, 37, 43, 1);
       Variablen.TopbarColor = Color.fromRGBO(0, 102, 0, 1);
@@ -162,6 +163,16 @@ class _HomeState extends State<Home> {
                                       color: Variablen.ButtonColor,
                                       onPressed: () { Navigator.pushNamed(context, '/AddPlayer'); },
                                       child: Text("Spieler hinzufügen"),),),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 300,
+                                    height: 25,
+                                    child: RaisedButton(
+                                      color: Variablen.ButtonColor,
+                                      onPressed: () { Navigator.pushNamed(context, '/TraingsListen'); },
+                                      child: Text("Anwesenheitslisten"),),),
                                 ),
                               ],
                             )
@@ -325,5 +336,9 @@ class _HomeState extends State<Home> {
       File('$path/darkmode.txt').writeAsString("true");
     }
     return File('$path/darkmode.txt');
+  }
+  Future setTrainingsValue() async {
+    File file = await _localFile2;
+    Variablen.TrainingsGesamt = double.parse(file.readAsStringSync());
   }
 }
