@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:fussball_trainer_managing_app/Var.dart';
 import 'dart:io';
+import 'package:intl/intl.dart';
 
 class AddTraining extends StatefulWidget{
   @override
@@ -103,7 +104,6 @@ class _AddTraining extends State<AddTraining> {
     File file;
     String end = "";
     try {
-      print("try");
       file = await _localFile;
       String data = await file.readAsString(encoding: utf8);
       var data_arr = data.split("\n");
@@ -128,6 +128,18 @@ class _AddTraining extends State<AddTraining> {
       print(val);
       print(val.toString());
       file2.writeAsString(val.toString());
+      final path = await _localPath;
+      var now = DateTime.now();
+      String date = DateFormat('dd.MM.yyyy').format(now);
+      File f = await File('$path/trainings/$date.txt').create(recursive: true);
+      String Trainingseinheit = "";
+      for (int i = 0; i < data_arr.length; i++) {
+        if (data_arr[i] != "" && Variablen.Player_States[i] == true) {
+          var raw = data_arr[i].split("!");
+          Trainingseinheit += raw[0] + " " + raw[1] + "\n";
+        }
+      }
+      await f.writeAsString(Trainingseinheit);
     } catch(e) {
       print(e.toString());
     }
