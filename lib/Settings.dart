@@ -27,6 +27,7 @@ class _Settings extends State<Settings> {
       ),
       body: Container(
         color: Variablen.BackgroundColor,
+        width: 500,
         child: ListView(
           children: <Widget>[
             Container(

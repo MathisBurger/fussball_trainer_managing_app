@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
           body: Center(
             child: Container(
                 color: Variablen.BackgroundColor,
-                width: 400,
+                width: 500,
                 child: Column(
                   children: <Widget>[
                     Container(

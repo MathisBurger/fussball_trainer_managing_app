@@ -27,6 +27,7 @@ class _ImportPicturePack extends State<ImportPicturePack> {
       ),
       body: Container(
         color: Variablen.BackgroundColor,
+        width: 500,
         child: Column(
         children: <Widget>[
           Container(

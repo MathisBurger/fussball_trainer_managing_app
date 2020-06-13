@@ -27,6 +27,7 @@ class _ExportPicturePack extends State<ExportPicturePack> {
       ),
       body: Container(
         color: Variablen.BackgroundColor,
+        width: 500,
         child: Column(
         children: <Widget>[
           Container(

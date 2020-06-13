@@ -21,6 +21,7 @@ class _AGBs extends State<AGBs> {
       ),
       body: Container(
         color: Variablen.BackgroundColor,
+        width: 500,
         child: ListView(
           children: <Widget>[
             Container(

@@ -38,6 +38,7 @@ class _AddingMenu extends State<AddingMenu>{
       ),
       body: Container(
         color: Variablen.BackgroundColor,
+        width: 500,
         child: ListView(
           children: <Widget>[
             Container(

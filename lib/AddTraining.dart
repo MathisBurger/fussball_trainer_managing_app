@@ -32,6 +32,7 @@ class _AddTraining extends State<AddTraining> {
       ),
       body: Container(
         color: Variablen.BackgroundColor,
+        width: 500,
         child: Column(
                 children: <Widget>[
                   new Expanded(

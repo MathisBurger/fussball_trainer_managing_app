@@ -30,6 +30,7 @@ class _PlayerList extends State<PlayerList> {
           ),
           body: Container(
           color: Variablen.BackgroundColor,
+          width: 500,
           child: new Column(
             children: <Widget>[
               new Expanded(

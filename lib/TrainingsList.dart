@@ -30,7 +30,7 @@ class _TrainingsList extends State<TrainingsList>{
       body: Center(
         child: Container(
           color: Variablen.BackgroundColor,
-          width: 400,
+          width: 500,
           child: Column(
             children: <Widget>[
             new Expanded(

@@ -26,7 +26,7 @@ class _TrainingsInformation extends State<TrainingsInformation> {
       body: Center(
         child: Container(
           color: Variablen.BackgroundColor,
-          width: 400,
+          width: 500,
           child: Column(
             children: <Widget>[
               Text("Anwesend:",
