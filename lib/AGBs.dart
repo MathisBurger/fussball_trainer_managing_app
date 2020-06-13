@@ -25,30 +25,6 @@ class _AGBs extends State<AGBs> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 5),
-              child: Text("Datennutzung",
-              style: TextStyle(
-                fontSize: 20,
-                color: Variablen.Textcolor,
-                fontWeight: FontWeight.bold,
-              ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 5),
-              child: Text("Sie lassen mit der Bestätigung der AGBs zu, dass Webservice Rathje ihre"
-                  " Nutzerdaten speichert. Diese Daten dürfen jedoch nicht weiterverkauft oder veröffentlicht werden. "
-                  "Die Sammlung dient ausschließlich der Nutzung einer Backup-Funktion. Bei anstößigen Benutzernamen wird der Account gesperrt. "
-                  "Es ist Webservice Rathje gestattet Emails über neue Updates an sie zu versenden.",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Variablen.Textcolor,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 5),
               child: Text("Rechtliche Grunflagen",
               style: TextStyle(
                 fontSize: 20,

@@ -12,9 +12,6 @@ class Variablen {
   static File activeFile;
   static String date;
 
-  //Settings
-  static bool AutoBackup = true;
-  static bool BackupOnLoad = true;
   //Darkmode
   static bool Darkmode = true;
   static Color BackgroundColor;
@@ -23,6 +20,4 @@ class Variablen {
   static Color BlueWidget;
   static Color RedWidget;
   static Color ButtonColor;
-  //Register
-static bool AGBs = false;
 }

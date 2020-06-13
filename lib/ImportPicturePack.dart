@@ -32,7 +32,7 @@ class _ImportPicturePack extends State<ImportPicturePack> {
           Container(
           margin: EdgeInsets.only(top: 25),
           child: Text("Mit der Funktion Bilder-Pakete importieren, kannst du die Bilder deiner Spieler "
-              "importieren, da diese nicht bei einem Backup gespeichert werden. "
+              " und die allgemeinen Daten importieren."
               "Importiere die ZIP-Datei, welche du zuvor exportiert hast.",
           style: TextStyle(
             fontSize: 20,
@@ -79,7 +79,8 @@ class _ImportPicturePack extends State<ImportPicturePack> {
       ..createSync(recursive: true)
       ..writeAsBytesSync(data);
       } else {
-        print("Error while loading zip-archive");
+        Directory( await _localPath + '/' + filename)
+          ..create(recursive: true);
       }
     }
   }

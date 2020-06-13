@@ -31,9 +31,9 @@ class _ExportPicturePack extends State<ExportPicturePack> {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 25),
-            child: Text("Mit dieser Funktion können die Profilbilder der Spieler exportiert werden."
+            child: Text("Mit dieser Funktion können die Profilbilder der Spieler und allgemeine Daten exportiert werden."
                 " Sie werden als .zip Datei gespeichert und können bei Bedarf wieder importiert werden, um die App "
-                "beispielsweise auf einem weiteren Gerät nutzen zu können. Aus Datenschutzrechtlichen Gründen, werden wir nie Bilder speichern.",
+                "beispielsweise auf einem weiteren Gerät nutzen zu können.",
               style: TextStyle(
                 fontSize: 20,
                 color: Variablen.Textcolor,
@@ -64,16 +64,15 @@ class _ExportPicturePack extends State<ExportPicturePack> {
     var files = await dirContents(Directory(Variablen.DocumentRoot));
     final encoder = ZipFileEncoder();
     var dir = await getExternalStorageDirectory();
-    encoder.create(Variablen.DocumentRoot + "/Bilder-Pack.zip");
     files.forEach((element) {
       try {
-        var element_arr = element.path.split(".j");
-        if (element_arr[1] == "pg") {
           encoder.addFile(File(element.path));
           print(element);
-        }
+
       } catch (e){ print(e.toString()); }
     });
+    encoder.addDirectory(Directory(Variablen.DocumentRoot + "/trainings"));
+    encoder.create(Variablen.DocumentRoot + "/Data-Pack.zip");
     encoder.close();
     print(encoder.zip_path);
     RenderBox box = context.findRenderObject();

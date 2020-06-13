@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'Var.dart';
-import 'package:fussball_trainer_managing_app/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 class Home extends StatefulWidget{
@@ -18,7 +17,7 @@ class _HomeState extends State<Home> {
     _localFile3;
     _localFile4;
     _localFile5;
-    LoadBackupState();
+    _trainingsDirectory;
     LoadDarkModeState();
     setTrainingsValue();
     if(Variablen.Darkmode){
@@ -35,9 +34,6 @@ class _HomeState extends State<Home> {
       Variablen.BlueWidget = Colors.blueAccent;
       Variablen.RedWidget = Colors.redAccent;
       Variablen.ButtonColor = Colors.white;
-    }
-    if(Variablen.AutoBackup){
-      Backup();
     }
     return Scaffold(
           appBar: AppBar(
@@ -267,23 +263,7 @@ class _HomeState extends State<Home> {
       Variablen.TrainingsGesamt = double.parse(await file.readAsString(encoding: utf8));
     } catch(e){}
   }
-  Future Backup() async {
-    if(Variablen.BackupOnLoad) {
-      File file1 = await _localFile;
-      String data1 = await file1.readAsString(encoding: utf8);
-      File file2 = await _localFile2;
-      String data2 = await file2.readAsString(encoding: utf8);
-      data1 = data1.replaceAll("\n", "§");
-      File file3 = await _localFile3;
-      String data3 = await file3.readAsString(encoding: utf8);
-      if(data3 != "null"){
-        var user_arr = data3.split("!");
-        String request = "/UploadBackupFussballManagerApp?username=" + user_arr[0] + "&password=" + user_arr[1] + "&ID=" + user_arr[2] + "&vals=" + data1 + "&trainings=" + data2;
-        CallAPI(request);
-        Variablen.BackupOnLoad = false;
-      }
-    }
-  }
+
   Future get _localFile3 async {
     try {
       final path = await _localPath;
@@ -304,17 +284,7 @@ class _HomeState extends State<Home> {
       return File('$path/backups.txt');
     }catch(e){}
   }
-  Future LoadBackupState() async {
-    try{
-      File file = await _localFile4;
-      String data = await file.readAsString(encoding: utf8);
-      if(data == "true"){
-        Variablen.AutoBackup = true;
-      } else {
-        Variablen.AutoBackup = false;
-      }
-    } catch (e){}
-  }
+
   Future LoadDarkModeState() async {
     try{
       File file = await _localFile5;
@@ -336,6 +306,13 @@ class _HomeState extends State<Home> {
       File('$path/darkmode.txt').writeAsString("true");
     }
     return File('$path/darkmode.txt');
+  }
+  Future get _trainingsDirectory async {
+    final path = await _localPath;
+    if(!Directory('$path/trainings').existsSync()){
+      Directory('$path/trainings').create(recursive: true);
+    }
+    return Directory('$path/darkmode.txt');
   }
   Future setTrainingsValue() async {
     File file = await _localFile2;

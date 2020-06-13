@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fussball_trainer_managing_app/Var.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:fussball_trainer_managing_app/http.dart';
 import 'dart:io';
 
 
@@ -30,33 +29,6 @@ class _Settings extends State<Settings> {
         color: Variablen.BackgroundColor,
         child: ListView(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 15),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                  child: Text("Automatische Backups\n(Sie müssen sich registrieren)",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Variablen.Textcolor,
-                      ),
-                      ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 50),
-                    child: Switch(
-                      onChanged: (bool value) {
-                          this.setState(() {
-                            Variablen.AutoBackup = !Variablen.AutoBackup;
-                            ChangeBackupState();
-                          });
-                      },
-                      value: Variablen.AutoBackup,
-                    ),
-                  )
-                ],
-              ),
-            ),
             Container(
               margin: EdgeInsets.only(top: 15),
               child: Row(
@@ -103,66 +75,10 @@ class _Settings extends State<Settings> {
               margin: EdgeInsets.only(top: 25),
               child: SizedBox(
                 width: 300,
-              height: 50,
-              child: RaisedButton(
-                color: Variablen.ButtonColor,
-                child: Text("Manuelles Backup"),
-                onPressed: () {
-                  Backup();
-                },
-              ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 25),
-              child: SizedBox(
-                width: 300,
                 height: 50,
                 child: RaisedButton(
                   color: Variablen.ButtonColor,
-                  child: Text("Letzes Backup laden"),
-                  onPressed: () {
-                    LoadLastBackup();
-                  },
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 25),
-              child: SizedBox(
-                width: 300,
-                height: 50,
-                child: RaisedButton(
-                  color: Variablen.ButtonColor,
-                  child: Text("Registrieren"),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/register');
-                  },
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 25),
-              child: SizedBox(
-                width: 300,
-                height: 50,
-                child: RaisedButton(
-                  color: Variablen.ButtonColor,
-                  child: Text("Login"),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/Login');
-                  },
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 25),
-              child: SizedBox(
-                width: 300,
-                height: 50,
-                child: RaisedButton(
-                  color: Variablen.ButtonColor,
-                  child: Text("Bilder-Pakete importieren"),
+                  child: Text("Daten importieren"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/ImportPicturePack');
                   },
@@ -176,9 +92,23 @@ class _Settings extends State<Settings> {
                 height: 50,
                 child: RaisedButton(
                   color: Variablen.ButtonColor,
-                  child: Text("Bilder-Pakete exportieren"),
+                  child: Text("Daten exportieren"),
                   onPressed: () {
                     Navigator.pushNamed(context, '/ExportPicturePack');
+                  },
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              child: SizedBox(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  color: Variablen.ButtonColor,
+                  child: Text("AGBs"),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/AGBs');
                   },
                 ),
               ),
@@ -194,32 +124,6 @@ class _Settings extends State<Settings> {
         ),
       ),
     );
-  }
-  Future Backup() async {
-    if(Variablen.BackupOnLoad) {
-      File file1 = await _localFile;
-      String data1 = await file1.readAsString(encoding: utf8);
-      File file2 = await _localFile2;
-      String data2 = await file2.readAsString(encoding: utf8);
-      data1 = data1.replaceAll("\n", "§");
-      File file3 = await _localFile3;
-      String data3 = await file3.readAsString(encoding: utf8);
-      if(data3 != "null"){
-        var user_arr = data3.split("!");
-        print(user_arr.toString());
-        String request = "/UploadBackupFussballManagerApp?username=" + user_arr[0] + "&password=" + user_arr[1] + "&ID=" + user_arr[2] + "&vals=" + data1 + "&trainings=" + data2;
-        CallAPI(request);
-        Variablen.BackupOnLoad = false;
-      }
-    }
-  }
-  Future get _localFile3 async {
-    final path = await _localPath;
-    if(!File('$path/userdata.txt').existsSync()){
-      File('$path/userdata.txt').create(recursive: true);
-      File('$path/userdata.txt').writeAsString("null");
-    }
-    return File('$path/userdata.txt');
   }
   Future<File> get _localFile2 async {
     final path = await _localPath;
@@ -242,17 +146,6 @@ class _Settings extends State<Settings> {
       File('$path/playerlist.txt').create(recursive: true);
     }
     return File('$path/playerlist.txt');
-  }
-  Future ChangeBackupState() async {
-    try{
-    File file = await _localFile4;
-      String data = await file.readAsString(encoding: utf8);
-      if(data == "true"){
-        file.writeAsString("false");
-      }else {
-        file.writeAsString("true");
-      }
-    }catch (e){}
   }
   Future ChangeDarkModeState() async {
     try{
@@ -280,23 +173,6 @@ class _Settings extends State<Settings> {
       File('$path/darkmode.txt').writeAsString("true");
     }
     return File('$path/darkmode.txt');
-  }
-  Future LoadLastBackup() async {
-    File file1 = await _localFile3;
-    String data1 = await file1.readAsString(encoding: utf8);
-    if(data1 != "null"){
-      var user_arr = data1.split("!");
-      String request = "/LoadBackupFussballManagerApp?username=" + user_arr[0] + "&password=" + user_arr[1] + "&ID=" + user_arr[2];
-      String response = await CallAPI(request);
-      var response_arr = response.split("()");
-      response_arr[0] = response_arr[0].replaceAll("§", "\n");
-      File file2 = await _localFile;
-      await file2.writeAsString(response_arr[0]);
-      File file3 = await _localFile2;
-      await file3.writeAsString(response_arr[1]);
-
-    }
-
   }
 
 }
