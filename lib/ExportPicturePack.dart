@@ -62,32 +62,22 @@ class _ExportPicturePack extends State<ExportPicturePack> {
     );
   }
   Future ExportData(BuildContext context) async {
-    var files = await dirContents(Directory(Variablen.DocumentRoot));
+    String dir = await _localPath;
+    print(dir);
+    File(dir + "/Data-Pack.zip").deleteSync();
     final encoder = ZipFileEncoder();
-    var dir = await getExternalStorageDirectory();
-    files.forEach((element) {
-      try {
-          encoder.addFile(File(element.path));
-          print(element);
-
-      } catch (e){ print(e.toString()); }
-    });
-    encoder.addDirectory(Directory(Variablen.DocumentRoot + "/trainings"));
-    encoder.create(Variablen.DocumentRoot + "/Data-Pack.zip");
+    encoder.create(dir + "/Data-Pack.zip");
+    encoder.addDirectory(Directory(dir));
     encoder.close();
     print(encoder.zip_path);
     RenderBox box = context.findRenderObject();
-    ShareExtend.share(Variablen.DocumentRoot + "/Bilder-Pack.zip", "file");
-
+    ShareExtend.share(dir + "/Data-Pack.zip", "file");
   }
-  Future<List<FileSystemEntity>> dirContents(Directory dir) {
-    var files = <FileSystemEntity>[];
-    var completer = Completer<List<FileSystemEntity>>();
-    var lister = dir.list(recursive: false, followLinks: true);
-    lister.listen (
-            (file) => files.add(file),
-        onDone:   () => completer.complete(files)
-    );
-    return completer.future;
+  Future<String> get _localPath async {
+    try {
+      var directory = await getApplicationDocumentsDirectory();
+      Variablen.DocumentRoot = directory.path;
+      return directory.path;
+    } catch (e) {}
   }
 }
