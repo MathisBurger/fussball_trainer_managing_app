@@ -89,17 +89,18 @@ class _AddTraining extends State<AddTraining> {
   }
   Future<File> get _localFile async {
     final path = await _localPath;
-    if(!File('$path/playerlist.txt').existsSync()){
-      File('$path/playerlist.txt').create(recursive: true);
+    if(!File('$path/data/playerlist.txt').existsSync()){
+      File('$path/data/playerlist.txt').create(recursive: true);
     }
-    return File('$path/playerlist.txt');
+    return File('$path/data/playerlist.txt');
   }
   Future<File> get _localFile2 async {
     final path = await _localPath;
-    if(!File('$path/trainings.txt').existsSync()){
-      File('$path/trainings.txt').create(recursive: true);
+    if(!File('$path/data/trainings.txt').existsSync()){
+      File('$path/data/trainings.txt').create(recursive: true).then((value) =>
+      value.writeAsStringSync("0"));
     }
-    return File('$path/trainings.txt');
+    return File('$path/data/trainings.txt');
   }
   Future AddEinheit() async {
     File file;
@@ -124,7 +125,7 @@ class _AddTraining extends State<AddTraining> {
       print("first");
       String data1 = await file2.readAsString(encoding: utf8);
       print("secound");
-      print("Data" + data1);
+      print("Data: " + data1);
       int val = int.parse(data1) + 1;
       print(val);
       print(val.toString());
@@ -132,7 +133,7 @@ class _AddTraining extends State<AddTraining> {
       final path = await _localPath;
       var now = DateTime.now();
       String date = DateFormat('dd.MM.yyyy').format(now);
-      File f = await File('$path/trainings/$date.txt').create(recursive: true);
+      File f = await File('$path/data/trainings/$date.txt').create(recursive: true);
       String Trainingseinheit = "";
       for (int i = 0; i < data_arr.length; i++) {
         if (data_arr[i] != "" && Variablen.Player_States[i] == true) {

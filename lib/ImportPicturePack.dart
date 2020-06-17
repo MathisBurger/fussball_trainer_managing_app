@@ -74,13 +74,13 @@ class _ImportPicturePack extends State<ImportPicturePack> {
       if(file.isFile){
       final data = file.content as List<int>;
       final dir = await _localPath;
-      String path = dir + "/" + filename;
+      String path = dir + "/data/" + filename;
       print(path);
       File(path)
       ..createSync(recursive: true)
       ..writeAsBytesSync(data);
       } else {
-        Directory( await _localPath + '/' + filename)
+        Directory( await _localPath + '/data/' + filename)
           ..create(recursive: true);
       }
     }

@@ -37,13 +37,12 @@ class _TrainingsList extends State<TrainingsList>{
             child: ListView.builder(
             itemCount: Variablen.TrainingsGesamt.round(),
             itemBuilder: (BuildContext content, int Index){
-            Directory dir = Directory(Variablen.DocumentRoot + "/trainings/");
+            Directory dir = Directory(Variablen.DocumentRoot + "/data/trainings/");
             var files = dir.listSync(recursive: false, followLinks: true);
             for(int i=0; i<files.length; i++){
             File file = files[i];
             var dirs = file.path.split("/");
             date = dirs[(dirs.length - 1)].split(".t")[0];
-
             }
             return Container(
             width: 300,
@@ -77,7 +76,7 @@ class _TrainingsList extends State<TrainingsList>{
                   child: RaisedButton(
                     color: Variablen.ButtonColor,
                     onPressed: () {
-                        Variablen.activeFile = File(Variablen.DocumentRoot + "/trainings/" + date + ".txt");
+                        Variablen.activeFile = File(Variablen.DocumentRoot + "/data/trainings/" + date + ".txt");
                         Variablen.date = date;
                         Navigator.pushNamed(context, '/AnwesendheitsListe');
                     },
@@ -113,11 +112,11 @@ class _TrainingsList extends State<TrainingsList>{
   Future<File> get _localFile2 async {
     try {
       final path = await _localPath;
-      if (!File('$path/trainings.txt').existsSync()) {
-        File('$path/trainings.txt').create(recursive: true);
-        File('$path/trainings.txt').writeAsString("0");
+      if (!File('$path/data/trainings.txt').existsSync()) {
+        File('$path/data/trainings.txt').create(recursive: true);
+        File('$path/data/trainings.txt').writeAsString("0");
       }
-      return File('$path/trainings.txt');
+      return File('$path/data/trainings.txt');
     }catch(e){}
   }
   Future<int> get _Trainings async {

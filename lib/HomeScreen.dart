@@ -195,10 +195,10 @@ class _HomeState extends State<Home> {
   Future<File> get _localFile async {
     try {
       final path = await _localPath;
-      if (!File('$path/playerlist.txt').existsSync()) {
-        File('$path/playerlist.txt').create(recursive: true);
+      if (!File('$path/data/playerlist.txt').existsSync()) {
+        File('$path/data/playerlist.txt').create(recursive: true);
       }
-      return File('$path/playerlist.txt');
+      return File('$path/data/playerlist.txt');
     } catch (e){}
   }
   Future PlayerList() async {
@@ -250,11 +250,12 @@ class _HomeState extends State<Home> {
   Future<File> get _localFile2 async {
     try {
       final path = await _localPath;
-      if (!File('$path/trainings.txt').existsSync()) {
-        File('$path/trainings.txt').create(recursive: true);
-        File('$path/trainings.txt').writeAsString("0");
+      if (!File('$path/data/trainings.txt').existsSync()) {
+        File('$path/data/trainings.txt').create(recursive: true).then((value) => {
+          value.writeAsStringSync("0")
+        });
       }
-      return File('$path/trainings.txt');
+      return File('$path/data/trainings.txt');
     }catch(e){}
   }
   Future GetGesamtTrainings() async {
@@ -267,21 +268,21 @@ class _HomeState extends State<Home> {
   Future get _localFile3 async {
     try {
       final path = await _localPath;
-      if (!File('$path/userdata.txt').existsSync()) {
-        File('$path/userdata.txt').create(recursive: true);
-        File('$path/userdata.txt').writeAsString("null");
+      if (!File('$path/data/userdata.txt').existsSync()) {
+        File('$path/data/userdata.txt').create(recursive: true);
+        File('$path/data/userdata.txt').writeAsString("null");
       }
-      return File('$path/userdata.txt');
+      return File('$path/data/userdata.txt');
     }catch(e){}
   }
   Future get _localFile4 async {
     try {
       final path = await _localPath;
-      if (!File('$path/backups.txt').existsSync()) {
-        File('$path/backups.txt').create(recursive: true);
-        File('$path/backups.txt').writeAsString("null");
+      if (!File('$path/data/backups.txt').existsSync()) {
+        File('$path/data/backups.txt').create(recursive: true);
+        File('$path/data/backups.txt').writeAsString("null");
       }
-      return File('$path/backups.txt');
+      return File('$path/data/backups.txt');
     }catch(e){}
   }
 
@@ -301,18 +302,18 @@ class _HomeState extends State<Home> {
   }
   Future get _localFile5 async {
     final path = await _localPath;
-    if(!File('$path/darkmode.txt').existsSync()){
-      File('$path/darkmode.txt').create(recursive: true);
-      File('$path/darkmode.txt').writeAsString("true");
+    if(!File('$path/data/darkmode.txt').existsSync()){
+      File('$path/data/darkmode.txt').create(recursive: true);
+      File('$path/data/darkmode.txt').writeAsString("true");
     }
-    return File('$path/darkmode.txt');
+    return File('$path/data/darkmode.txt');
   }
   Future get _trainingsDirectory async {
     final path = await _localPath;
-    if(!Directory('$path/trainings').existsSync()){
-      Directory('$path/trainings').create(recursive: true);
+    if(!Directory('$path/data/trainings').existsSync()){
+      Directory('$path/data/trainings').create(recursive: true);
     }
-    return Directory('$path/darkmode.txt');
+    return Directory('$path/data/darkmode.txt');
   }
   Future setTrainingsValue() async {
     File file = await _localFile2;

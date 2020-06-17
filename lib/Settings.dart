@@ -128,11 +128,11 @@ class _Settings extends State<Settings> {
   }
   Future<File> get _localFile2 async {
     final path = await _localPath;
-    if(!File('$path/trainings.txt').existsSync()){
-      File('$path/trainings.txt').create(recursive: true);
-      File('$path/trainings.txt').writeAsString("0");
+    if(!File('$path/data/trainings.txt').existsSync()){
+      File('$path/data/trainings.txt').create(recursive: true);
+      File('$path/data/trainings.txt').writeAsString("0");
     }
-    return File('$path/trainings.txt');
+    return File('$path/data/trainings.txt');
   }
   Future<String> get _localPath async {
     try {
@@ -143,10 +143,10 @@ class _Settings extends State<Settings> {
   }
   Future<File> get _localFile async {
     final path = await _localPath;
-    if(!File('$path/playerlist.txt').existsSync()){
-      File('$path/playerlist.txt').create(recursive: true);
+    if(!File('$path/data/playerlist.txt').existsSync()){
+      File('$path/data/playerlist.txt').create(recursive: true);
     }
-    return File('$path/playerlist.txt');
+    return File('$path/data/playerlist.txt');
   }
   Future ChangeDarkModeState() async {
     try{
@@ -161,19 +161,19 @@ class _Settings extends State<Settings> {
   }
   Future get _localFile4 async {
     final path = await _localPath;
-    if(!File('$path/backups.txt').existsSync()){
-      File('$path/backups.txt').create(recursive: true);
-      File('$path/backups.txt').writeAsString("null");
+    if(!File('$path/data/backups.txt').existsSync()){
+      File('$path/data/backups.txt').create(recursive: true);
+      File('$path/data/backups.txt').writeAsString("null");
     }
-    return File('$path/backups.txt');
+    return File('$path/data/backups.txt');
   }
   Future get _localFile5 async {
     final path = await _localPath;
-    if(!File('$path/darkmode.txt').existsSync()){
-      File('$path/darkmode.txt').create(recursive: true);
-      File('$path/darkmode.txt').writeAsString("true");
+    if(!File('$path/data/darkmode.txt').existsSync()){
+      File('$path/data/darkmode.txt').create(recursive: true);
+      File('$path/data/darkmode.txt').writeAsString("true");
     }
-    return File('$path/darkmode.txt');
+    return File('$path/data/darkmode.txt');
   }
 
 }

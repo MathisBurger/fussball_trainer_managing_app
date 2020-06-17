@@ -64,10 +64,20 @@ class _ExportPicturePack extends State<ExportPicturePack> {
   Future ExportData(BuildContext context) async {
     String dir = await _localPath;
     print(dir);
-    File(dir + "/Data-Pack.zip").deleteSync();
+    try {
+      await File(dir + "/Data-Pack.zip").delete();
+    } catch (e) {print(e.toString()); }
     final encoder = ZipFileEncoder();
     encoder.create(dir + "/Data-Pack.zip");
-    encoder.addDirectory(Directory(dir));
+    var files = Directory(dir + "/data").list(recursive: true);
+    files.forEach((element) {
+      print(element.path);
+      if(element is File){
+        encoder.addFile(element);
+      } else if (element is Directory){
+        encoder.addDirectory(element);
+      }
+    });
     encoder.close();
     print(encoder.zip_path);
     RenderBox box = context.findRenderObject();

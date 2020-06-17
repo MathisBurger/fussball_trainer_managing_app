@@ -11,7 +11,6 @@ class _PlayerList extends State<PlayerList> {
 
   @override
   Widget build (BuildContext ctxt) {
-    print("sync");
       return new Scaffold(
           appBar: AppBar(
             actions: <Widget>[
@@ -50,7 +49,7 @@ class _PlayerList extends State<PlayerList> {
                         String Trainings = PlayerData[2];
                         double anteil = int.parse(Trainings) / Variablen.TrainingsGesamt * 100;
                         String Fullname = Vorname + " " + Nachname;
-                        String Path = Variablen.DocumentRoot + "/" + Vorname + "!" + Nachname + ".jpg";
+                        String Path = Variablen.DocumentRoot + "/data/" + Vorname + "!" + Nachname + ".jpg";
                         File file = new File(Path);
                         return Container(
                           width: 300,

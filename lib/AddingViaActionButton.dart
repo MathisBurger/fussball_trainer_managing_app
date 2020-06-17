@@ -105,7 +105,7 @@ class _AddingMenu extends State<AddingMenu>{
                       vorname = vornamecontroller.text;
                       nachname = nachnamecontroller.text;
                       final directory = await _localPath;
-                      final String path = directory + "/" + vorname + "!" + nachname + ".jpg";
+                      final String path = directory + "/data/" + vorname + "!" + nachname + ".jpg";
                       if(_image == null) {
                         var bytes = await rootBundle.load("assets/blank.jpg");
                         File file = await File(path).create(recursive: true);
@@ -141,10 +141,10 @@ class _AddingMenu extends State<AddingMenu>{
   }
   Future<File> get _localFile async {
     final path = await _localPath;
-    if(!File('$path/playerlist.txt').existsSync()){
-      File('$path/playerlist.txt').create(recursive: true);
+    if(!File('$path/data/playerlist.txt').existsSync()){
+      File('$path/data/playerlist.txt').create(recursive: true);
     }
-    return File('$path/playerlist.txt');
+    return File('$path/data/playerlist.txt');
   }
   Future WriteData(String Data) async {
     final file = await _localFile;
