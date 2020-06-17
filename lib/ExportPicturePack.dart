@@ -69,7 +69,7 @@ class _ExportPicturePack extends State<ExportPicturePack> {
     } catch (e) {print(e.toString()); }
     final encoder = ZipFileEncoder();
     encoder.create(dir + "/Data-Pack.zip");
-    var files = Directory(dir + "/data").list(recursive: true);
+    var files = Directory(dir + "/data/").list(recursive: true);
     files.forEach((element) {
       print(element.path);
       if(element is File){
