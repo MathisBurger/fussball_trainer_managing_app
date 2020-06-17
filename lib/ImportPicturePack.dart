@@ -70,14 +70,13 @@ class _ImportPicturePack extends State<ImportPicturePack> {
       type: FileType.custom,
       allowedExtensions: ['zip'],
     );
-    final destination = Directory(Variablen.DocumentRoot + "/data");
+    final destination = Directory(Variablen.DocumentRoot);
     try {
       FlutterArchive.unzip(zipFile: _zip, destinationDir: destination);
     } catch (e) {
       print(e);
     }
   }
-
   Future<String> get _localPath async {
     try {
       var directory = await getApplicationDocumentsDirectory();
